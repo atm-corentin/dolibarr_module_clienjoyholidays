@@ -20,7 +20,7 @@
 # Module label 'ModuleCliEnjoyHolidaysName'
 ModuleCliEnjoyHolidaysName = CliEnjoyHolidays
 # Module description 'ModuleCliEnjoyHolidaysDesc'
-ModuleCliEnjoyHolidaysDesc = CliEnjoyHolidays description
+ModuleCliEnjoyHolidaysDesc = Le module clienjoyholidays permet de céer, modifier, supprimer, cloner, lister des formules de voyages
 
 #
 # Admin page

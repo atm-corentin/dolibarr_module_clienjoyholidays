@@ -83,7 +83,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 		// If file is in theme/yourtheme/img directory under name object_pictovalue.png, use this->picto='pictovalue'
 		// If file is in module/img directory under name object_pictovalue.png, use this->picto='pictovalue@module'
 		// To use a supported fa-xxx css style of font awesome, use this->picto='xxx'
-		$this->picto = 'fa-file-o';
+		$this->picto = 'clienjoyholidays@clienjoyholidays';
 
 		// Define some features supported by module (triggers, login, substitutions, menus, css, etc...)
 		$this->module_parts = array(
@@ -295,7 +295,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 		$this->rights[$r][4] = 'clienjoyholidays';
 		$this->rights[$r][5] = 'delete';
 		$r++;
-		
+
 		/* END MODULEBUILDER PERMISSIONS */
 
 		// Main menu entries to add
@@ -306,8 +306,8 @@ class modCliEnjoyHolidays extends DolibarrModules
 		$this->menu[$r++] = array(
 			'fk_menu'=>'', // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
 			'type'=>'top', // This is a Top menu entry
-			'titre'=>'ModuleEnjoyholidaysName',
-			'prefix' => img_picto('', $this->picto, 'class="paddingright pictofixedwidth valignmiddle"'),
+			'titre'=>'Formule de voyage',
+			'prefix' => img_picto('', $this->picto, 'class="pictofixedwidth valignmiddle"'),
 			'mainmenu'=>'clienjoyholidaysmain',
 			'leftmenu'=>'clienjoyholidays',
 			'url'=>'/clienjoyholidays/clienjoyholidays_list.php',

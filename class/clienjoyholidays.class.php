@@ -60,9 +60,9 @@ class CliEnjoyHolidays extends CommonObject
 	public $isextrafieldmanaged = 1;
 
 	/**
-	 * @var string String with name of icon for clienjoyholidays. Must be a 'fa-xxx' fontawesome code (or 'fa-xxx_fa_color_size') or 'clienjoyholidays@clienjoyholidays' if picto is file 'img/object_clienjoyholidays.png'.
+	 * @var string String with name of icon for clienjoyholidays. Must be a 'fa-xxx' fontawesome code (or 'fa-xxx_fa_color_size') or 'clienjoyholidays@clienjoyholidays' if picto is file 'img/object_test.png'.
 	 */
-	public $picto = 'fa-file';
+	public $picto = 'clienjoyholidays@clienjoyholidays';
 
 
 	const STATUS_DRAFT = 0;
@@ -122,11 +122,11 @@ class CliEnjoyHolidays extends CommonObject
 		"fk_user_creat" => array("type"=>"integer:User:user/class/user.class.php", "label"=>"UserAuthor", "picto"=>"user", "enabled"=>"1", 'position'=>510, 'notnull'=>1, "visible"=>"-2", "csslist"=>"tdoverflowmax150",),
 		"fk_user_modif" => array("type"=>"integer:User:user/class/user.class.php", "label"=>"UserModif", "picto"=>"user", "enabled"=>"1", 'position'=>511, 'notnull'=>-1, "visible"=>"-2", "csslist"=>"tdoverflowmax150",),
 		"import_key" => array("type"=>"varchar(14)", "label"=>"ImportId", "enabled"=>"1", 'position'=>1000, 'notnull'=>-1, "visible"=>"-2",),
-		"status" => array("type"=>"integer", "label"=>"Status", "enabled"=>"1", 'position'=>2000, 'notnull'=>1, "visible"=>"1", "index"=>"1", "arrayofkeyval"=>array("{0:Brouillon" => "1:Validé}"), "validate"=>"1",),
+		"status" => array("type"=>"integer", "label"=>"Status", "enabled"=>"1", 'position'=>2000, 'notnull'=>1, "visible"=>"4", "index"=>"1", "arrayofkeyval"=>array("0" => "{{0:Brouillon:1:Validé}}"), "validate"=>"1",),
 		"fk_destination_country" => array("type"=>"integer:ccountry:/core/class/ccountry.class.php", "label"=>"Pays de destination", "enabled"=>"1", 'position'=>50, 'notnull'=>1, "visible"=>"1",),
 		"start_date" => array("type"=>"datetime", "label"=>"Date/Heure Départ", "enabled"=>"1", 'position'=>60, 'notnull'=>0, "visible"=>"1",),
 		"return_date" => array("type"=>"datetime", "label"=>"Date/Heure Retour", "enabled"=>"1", 'position'=>70, 'notnull'=>0, "visible"=>"1",),
-		"fk_travel_mode" => array("type"=>"sellist:c_transport_mode:label:rowid::(active:=:1)", "label"=>"Mode de transport", "enabled"=>"1", 'position'=>80, 'notnull'=>0, "visible"=>"1", "foreignkey"=>"0",),
+		"fk_travel_mode" => array("type"=>"sellist:c_transport_mode:label:rowid::(active:=:1)", "label"=>"Mode de transport", "enabled"=>"1", 'position'=>80, 'notnull'=>0, "visible"=>"1",),
 	);
 	public $rowid;
 	public $ref;
