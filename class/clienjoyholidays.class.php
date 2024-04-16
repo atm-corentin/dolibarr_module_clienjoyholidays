@@ -114,38 +114,34 @@ class CliEnjoyHolidays extends CommonObject
 	 */
 	public $fields=array(
 		"rowid" => array("type"=>"integer", "label"=>"TechnicalID", "enabled"=>"1", 'position'=>1, 'notnull'=>1, "visible"=>"0", "noteditable"=>"1", "index"=>"1", "css"=>"left", "comment"=>"Id"),
-		"ref" => array("type"=>"varchar(40)", "label"=>"Ref", "enabled"=>"1", 'position'=>2, 'notnull'=>1, "visible"=>"1", "noteditable"=>"1", "default"=>"(PROV)", "index"=>"1", "searchall"=>"1", "validate"=>"1", "comment"=>"Reference of object"),
-		"label" => array("type"=>"varchar(255)", "label"=>"Libelle", "enabled"=>"1", 'position'=>3, 'notnull'=>1, "visible"=>"1", "searchall"=>"1", "css"=>"minwidth300", "cssview"=>"wordbreak", "help"=>"Help text", "validate"=>"1",),
-		"amount" => array("type"=>"price", "label"=>"Tarif", "enabled"=>"1", 'position'=>5, 'notnull'=>0, "visible"=>"1", "default"=>"null", "isameasure"=>"1", "help"=>"Help text for amount", "validate"=>"1",),
+		"ref" => array("type"=>"varchar(128)", "label"=>"Ref", "enabled"=>"1", 'position'=>20, 'notnull'=>1, "visible"=>"1", "noteditable"=>"1", "default"=>"(PROV)", "index"=>"1", "searchall"=>"1", "validate"=>"1", "comment"=>"Reference of object"),
+		"label" => array("type"=>"varchar(255)", "label"=>"Libelle", "enabled"=>"1", 'position'=>30, 'notnull'=>1, "visible"=>"1", "searchall"=>"1", "css"=>"minwidth300", "cssview"=>"wordbreak", "help"=>"Help text", "validate"=>"1",),
+		"amount" => array("type"=>"price", "label"=>"Prix", "enabled"=>"1", 'position'=>40, 'notnull'=>0, "visible"=>"1", "default"=>"null", "isameasure"=>"1", "help"=>"Help text for amount", "validate"=>"1",),
 		"date_creation" => array("type"=>"datetime", "label"=>"DateCreation", "enabled"=>"1", 'position'=>500, 'notnull'=>1, "visible"=>"-2",),
+		"tms" => array("type"=>"timestamp", "label"=>"DateModification", "enabled"=>"1", 'position'=>501, 'notnull'=>0, "visible"=>"-2",),
 		"fk_user_creat" => array("type"=>"integer:User:user/class/user.class.php", "label"=>"UserAuthor", "picto"=>"user", "enabled"=>"1", 'position'=>510, 'notnull'=>1, "visible"=>"-2", "csslist"=>"tdoverflowmax150",),
 		"fk_user_modif" => array("type"=>"integer:User:user/class/user.class.php", "label"=>"UserModif", "picto"=>"user", "enabled"=>"1", 'position'=>511, 'notnull'=>-1, "visible"=>"-2", "csslist"=>"tdoverflowmax150",),
-		"last_main_doc" => array("type"=>"varchar(255)", "label"=>"LastMainDoc", "enabled"=>"1", 'position'=>600, 'notnull'=>0, "visible"=>"0",),
 		"import_key" => array("type"=>"varchar(14)", "label"=>"ImportId", "enabled"=>"1", 'position'=>1000, 'notnull'=>-1, "visible"=>"-2",),
-		"model_pdf" => array("type"=>"varchar(255)", "label"=>"Model pdf", "enabled"=>"1", 'position'=>1010, 'notnull'=>-1, "visible"=>"0",),
-		"status" => array("type"=>"integer", "label"=>"Status", "enabled"=>"1", 'position'=>9, 'notnull'=>1, "visible"=>"5", "index"=>"1", "arrayofkeyval"=>array("{{0:Brouillon:1:Validé" => "9:Annulé}}"), "validate"=>"1",),
-		"start_date" => array("type"=>"datetime", "label"=>"Date/Heure Départ", "enabled"=>"1", 'position'=>6, 'notnull'=>0, "visible"=>"1", "searchall"=>"1",),
-		"fk_destination_country" => array("type"=>"integer:ccountry:/core/class/ccountry.class.php", "label"=>"Pays de destination", "enabled"=>"1", 'position'=>4, 'notnull'=>1, "visible"=>"1",),
-		"return_date" => array("type"=>"datetime", "label"=>"Date/Heure Retour", "enabled"=>"1", 'position'=>7, 'notnull'=>0, "visible"=>"1",),
-		"fk_travel_mod" => array("type"=>"sellist:c_transport_mode:label:rowid::(active:=:1)", "label"=>"Mode de transport", "enabled"=>"1", 'position'=>8, 'notnull'=>0, "visible"=>"1",),
-		"tms" => array("type"=>"timestamp", "label"=>"tms", "enabled"=>"1", 'position'=>40, 'notnull'=>0, "visible"=>"-2",),
+		"status" => array("type"=>"integer", "label"=>"Status", "enabled"=>"1", 'position'=>2000, 'notnull'=>1, "visible"=>"1", "index"=>"1", "arrayofkeyval"=>array("{0:Brouillon" => "1:Validé}"), "validate"=>"1",),
+		"fk_destination_country" => array("type"=>"integer:ccountry:/core/class/ccountry.class.php", "label"=>"Pays de destination", "enabled"=>"1", 'position'=>50, 'notnull'=>1, "visible"=>"1",),
+		"start_date" => array("type"=>"datetime", "label"=>"Date/Heure Départ", "enabled"=>"1", 'position'=>60, 'notnull'=>0, "visible"=>"1",),
+		"return_date" => array("type"=>"datetime", "label"=>"Date/Heure Retour", "enabled"=>"1", 'position'=>70, 'notnull'=>0, "visible"=>"1",),
+		"fk_travel_mode" => array("type"=>"sellist:c_transport_mode:label:rowid::(active:=:1)", "label"=>"Mode de transport", "enabled"=>"1", 'position'=>80, 'notnull'=>0, "visible"=>"1", "foreignkey"=>"0",),
 	);
 	public $rowid;
 	public $ref;
 	public $label;
 	public $amount;
 	public $date_creation;
+	public $tms;
 	public $fk_user_creat;
 	public $fk_user_modif;
-	public $last_main_doc;
 	public $import_key;
-	public $model_pdf;
 	public $status;
-	public $start_date;
 	public $fk_destination_country;
+	public $start_date;
 	public $return_date;
-	public $fk_travel_mod;
-	public $tms;
+	public $fk_travel_mode;
 	// END MODULEBUILDER PROPERTIES
 
 
@@ -237,13 +233,8 @@ class CliEnjoyHolidays extends CommonObject
 	 */
 	public function create(User $user, $notrigger = false)
 	{
+		$resultcreate = $this->createCommon($user, $notrigger);
 
-
-		if(strlen($this->label) < 5){
-			$resultcreate = $this->createCommon($user, $notrigger);
-		}else{
-			setEventMessages('');
-		}
 		//$resultvalidate = $this->validate($user, $notrigger);
 
 		return $resultcreate;
@@ -1150,7 +1141,7 @@ class CliEnjoyHolidays extends CommonObject
 		global $conf, $langs;
 
 		$result = 0;
-		$includedocgeneration = 1;
+		$includedocgeneration = 0;
 
 		$langs->load("clienjoyholidays@clienjoyholidays");
 

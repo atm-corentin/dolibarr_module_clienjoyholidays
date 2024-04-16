@@ -17,20 +17,18 @@
 CREATE TABLE llx_clienjoyholidays_clienjoyholidays(
 	-- BEGIN MODULEBUILDER FIELDS
 	rowid integer AUTO_INCREMENT PRIMARY KEY NOT NULL, 
-	ref varchar(40) DEFAULT '(PROV)' NOT NULL, 
+	ref varchar(128) DEFAULT '(PROV)' NOT NULL, 
 	label varchar(255) NOT NULL, 
 	amount double DEFAULT NULL, 
 	date_creation datetime NOT NULL, 
+	tms timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, 
 	fk_user_creat integer NOT NULL, 
 	fk_user_modif integer, 
-	last_main_doc varchar(255), 
 	import_key varchar(14), 
-	model_pdf varchar(255), 
 	status integer NOT NULL, 
-	start_date datetime, 
 	fk_destination_country integer NOT NULL, 
+	start_date datetime, 
 	return_date datetime, 
-	fk_travel_mod integer, 
-	tms timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+	fk_travel_mode integer
 	-- END MODULEBUILDER FIELDS
 ) ENGINE=innodb;
