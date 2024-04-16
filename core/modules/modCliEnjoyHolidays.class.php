@@ -280,6 +280,21 @@ class modCliEnjoyHolidays extends DolibarrModules
 		$this->rights[$r][4] = '';
 		$this->rights[$r][5] = '';
 		$r++;
+		$this->rights[$r][0] = $this->numero . sprintf('%02d', (1 * 10) + 0 + 1);
+		$this->rights[$r][1] = 'Read CliEnjoyHolidays object of CliEnjoyHolidays';
+		$this->rights[$r][4] = 'clienjoyholidays';
+		$this->rights[$r][5] = 'read';
+		$r++;
+		$this->rights[$r][0] = $this->numero . sprintf('%02d', (1 * 10) + 1 + 1);
+		$this->rights[$r][1] = 'Create/Update CliEnjoyHolidays object of CliEnjoyHolidays';
+		$this->rights[$r][4] = 'clienjoyholidays';
+		$this->rights[$r][5] = 'write';
+		$r++;
+		$this->rights[$r][0] = $this->numero . sprintf('%02d', (1 * 10) + 2 + 1);
+		$this->rights[$r][1] = 'Delete CliEnjoyHolidays object of CliEnjoyHolidays';
+		$this->rights[$r][4] = 'clienjoyholidays';
+		$this->rights[$r][5] = 'delete';
+		$r++;
 		
 		/* END MODULEBUILDER PERMISSIONS */
 
@@ -307,6 +322,52 @@ class modCliEnjoyHolidays extends DolibarrModules
 		/* BEGIN MODULEBUILDER LEFTMENU MYOBJECT */
 
 
+		/*LEFTMENU CLIENJOYHOLIDAYS*/
+		$this->menu[$r++]=array(
+			'fk_menu'=>'fk_mainmenu=clienjoyholidays',
+			'type'=>'left',
+			'titre'=>'CliEnjoyHolidays',
+			'prefix' => img_picto('', $this->picto, 'class="paddingright pictofixedwidth valignmiddle"'),
+			'mainmenu'=>'clienjoyholidays',
+			'leftmenu'=>'clienjoyholidays',
+			'url'=>'/clienjoyholidays/clienjoyholidays_list.php',
+			'langs'=>'clienjoyholidays@clienjoyholidays',
+			'position'=>1000+$r,
+			'enabled'=>'isModEnabled("clienjoyholidays")',
+			'perms'=>'$user->hasRight("clienjoyholidays", "clienjoyholidays", "read")',
+			'target'=>'',
+			'user'=>2,
+		);
+        $this->menu[$r++]=array(
+            'fk_menu'=>'fk_mainmenu=clienjoyholidays,fk_leftmenu=clienjoyholidays',
+            'type'=>'left',
+            'titre'=>'List CliEnjoyHolidays',
+            'mainmenu'=>'clienjoyholidays',
+            'leftmenu'=>'clienjoyholidays_clienjoyholidays_list',
+            'url'=>'/clienjoyholidays/clienjoyholidays_list.php',
+            'langs'=>'clienjoyholidays@clienjoyholidays',
+            'position'=>1000+$r,
+            'enabled'=>'isModEnabled("clienjoyholidays")',
+			'perms'=>'$user->hasRight("clienjoyholidays", "clienjoyholidays", "read")',
+            'target'=>'',
+            'user'=>2,
+        );
+        $this->menu[$r++]=array(
+            'fk_menu'=>'fk_mainmenu=clienjoyholidays,fk_leftmenu=clienjoyholidays',
+            'type'=>'left',
+            'titre'=>'New CliEnjoyHolidays',
+            'mainmenu'=>'clienjoyholidays',
+            'leftmenu'=>'clienjoyholidays_clienjoyholidays_new',
+            'url'=>'/clienjoyholidays/clienjoyholidays_card.php?action=create',
+            'langs'=>'clienjoyholidays@clienjoyholidays',
+            'position'=>1000+$r,
+            'enabled'=>'isModEnabled("clienjoyholidays")',
+			'perms'=>'$user->hasRight("clienjoyholidays", "clienjoyholidays", "write")',
+            'target'=>'',
+            'user'=>2
+        );
+
+		/*END LEFTMENU CLIENJOYHOLIDAYS*/
 		/* END MODULEBUILDER LEFTMENU MYOBJECT */
 		// Exports profiles provided by this module
 		$r = 1;
