@@ -83,7 +83,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 		// If file is in theme/yourtheme/img directory under name object_pictovalue.png, use this->picto='pictovalue'
 		// If file is in module/img directory under name object_pictovalue.png, use this->picto='pictovalue@module'
 		// To use a supported fa-xxx css style of font awesome, use this->picto='xxx'
-		$this->picto = 'clienjoyholidays@clienjoyholidays';
+		$this->picto = 'fa-plane';
 
 		// Define some features supported by module (triggers, login, substitutions, menus, css, etc...)
 		$this->module_parts = array(
@@ -334,7 +334,6 @@ class modCliEnjoyHolidays extends DolibarrModules
 			'enabled'=>'$conf->clienjoyholidays->enabled',  // Define condition to show or hide menu entry. Use '$conf->chiffrage->enabled' if entry must be visible if module is enabled.
 			'perms'=>'$user->rights->clienjoyholidays->clienjoyholidays->read',			                // Use 'perms'=>'$user->rights->chiffrage->level1->level2' if you want your menu with a permission rules
 			'target'=>'',
-			'prefix' => '<span class="fas fa-comment-dollar em092 pictofixedwidth clienjoyholidays-left-menu-picto" style="color: #7e7772;"></span>',
 			'user'=>2,				                // 0=Menu for internal users, 1=external users, 2=both
 		);
 

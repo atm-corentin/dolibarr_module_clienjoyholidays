@@ -277,7 +277,7 @@ $form = new Form($db);
 
 $now = dol_now();
 
-$title = $langs->trans("CliEnjoyHolidayss");
+$title = $langs->trans("CliEnjoyHolidaysListTitle");
 //$help_url = "EN:Module_CliEnjoyHolidays|FR:Module_CliEnjoyHolidays_FR|ES:Módulo_CliEnjoyHolidays";
 $help_url = '';
 $morejs = array();

@@ -191,6 +191,27 @@ if (empty($reshook)) {
 
 	$triggermodname = 'CLIENJOYHOLIDAYS_MYOBJECT_MODIFY'; // Name of trigger action code to execute when we modify record
 
+	// Action clone object and redirect to edit mode
+	if ($action == 'confirm_clone' && $confirm == 'yes' && ! empty($permissiontoadd)) {
+		if ($object->id > 0) {
+			if (1 == 0 && !GETPOST('clone_content') && !GETPOST('clone_receivers')) {
+				setEventMessages($langs->trans("NoCloneOptionsSpecified"), null, 'errors');
+			} else {
+				$result = $object->createFromClone($user, (($object->id > 0) ? $object->id : $id));
+				if (is_object($result) || $result > 0) {
+					$newid = 0;
+					if (is_object($result)) $newid = $result->id;
+					else $newid = $result;
+					header("Location: " . $_SERVER['PHP_SELF'] . '?id=' . $newid . '&action=edit'); // Open record of new object
+					exit;
+				} else {
+					setEventMessages($object->error, $object->errors, 'errors');
+					$action = '';
+				}
+			}
+		}
+	}
+
 	// Actions cancel, add, update, update_extras, confirm_validate, confirm_delete, confirm_deleteline, confirm_clone, confirm_close, confirm_setdraft, confirm_reopen
 	include DOL_DOCUMENT_ROOT.'/core/actions_addupdatedelete.inc.php';
 
@@ -234,7 +255,7 @@ $formproject = new FormProjets($db);
 $title = $langs->trans("CliEnjoyHolidays")." - ".$langs->trans('Card');
 //$title = $object->ref." - ".$langs->trans('Card');
 if ($action == 'create') {
-	$title = $langs->trans("NewObject", $langs->transnoentitiesnoconv("CliEnjoyHolidays"));
+	$title = $langs->trans("CliEnjoyHolidaysCardTitle");
 }
 $help_url = '';
 

@@ -62,7 +62,7 @@ class CliEnjoyHolidays extends CommonObject
 	/**
 	 * @var string String with name of icon for clienjoyholidays. Must be a 'fa-xxx' fontawesome code (or 'fa-xxx_fa_color_size') or 'clienjoyholidays@clienjoyholidays' if picto is file 'img/object_test.png'.
 	 */
-	public $picto = 'clienjoyholidays@clienjoyholidays';
+	public $picto = 'fa-plane';
 
 
 	const STATUS_DRAFT = 0;
@@ -121,7 +121,7 @@ class CliEnjoyHolidays extends CommonObject
 		"tms" => array("type"=>"timestamp", "label"=>"DateModification", "enabled"=>"1", 'position'=>501, 'notnull'=>0, "visible"=>"-2",),
 		"fk_user_creat" => array("type"=>"integer:User:user/class/user.class.php", "label"=>"UserAuthor", "picto"=>"user", "enabled"=>"1", 'position'=>510, 'notnull'=>1, "visible"=>"-2", "csslist"=>"tdoverflowmax150",),
 		"fk_user_modif" => array("type"=>"integer:User:user/class/user.class.php", "label"=>"UserModif", "picto"=>"user", "enabled"=>"1", 'position'=>511, 'notnull'=>-1, "visible"=>"-2", "csslist"=>"tdoverflowmax150",),
-		"import_key" => array("type"=>"varchar(14)", "label"=>"ImportId", "enabled"=>"1", 'position'=>1000, 'notnull'=>-1, "visible"=>"-2",),
+		"import_key" => array("type"=>"varchar(14)", "label"=>"ImportId", "enabled"=>"1", 'position'=>1000, 'notnull'=>0, "visible"=>"-2",),
 		"status" => array("type"=>"integer", "label"=>"Status", "enabled"=>"1", 'position'=>2000, 'notnull'=>1, "visible"=>"4", "index"=>"1", "arrayofkeyval"=>array("0" => "{{0:Brouillon:1:Validé}}"), "validate"=>"1",),
 		"fk_destination_country" => array("type"=>"integer:ccountry:/core/class/ccountry.class.php", "label"=>"Pays de destination", "enabled"=>"1", 'position'=>50, 'notnull'=>1, "visible"=>"1",),
 		"start_date" => array("type"=>"datetime", "label"=>"Date/Heure Départ", "enabled"=>"1", 'position'=>60, 'notnull'=>0, "visible"=>"1",),
@@ -233,8 +233,8 @@ class CliEnjoyHolidays extends CommonObject
 	 */
 	public function create(User $user, $notrigger = false)
 	{
-		$resultcreate = $this->createCommon($user, $notrigger);
 
+		$resultcreate = $this->createCommon($user, $notrigger);
 		//$resultvalidate = $this->validate($user, $notrigger);
 
 		return $resultcreate;
@@ -257,7 +257,6 @@ class CliEnjoyHolidays extends CommonObject
 		$object = new self($this->db);
 
 		$this->db->begin();
-
 		// Load source object
 		$result = $object->fetchCommon($fromid);
 		if ($result > 0 && !empty($object->table_element_line)) {
@@ -266,12 +265,12 @@ class CliEnjoyHolidays extends CommonObject
 
 		// get lines so they will be clone
 		//foreach($this->lines as $line)
-		//	$line->fetch_optionals();
+		//	$line->fetch_$objectoptionals();
 
 		// Reset some properties
 		unset($object->id);
 		unset($object->fk_user_creat);
-		unset($object->import_key);
+		$object->import_key = null;
 
 		// Clear fields
 		if (property_exists($object, 'ref')) {
@@ -306,11 +305,12 @@ class CliEnjoyHolidays extends CommonObject
 		// Create clone
 		$object->context['createfromclone'] = 'createfromclone';
 		$result = $object->createCommon($user);
+
 		if ($result < 0) {
 			$error++;
 			$this->setErrorsFromObject($object);
-		}
 
+		}
 		if (!$error) {
 			// copy internal contacts
 			if ($this->copy_linked_contact($object, 'internal') < 0) {
@@ -644,6 +644,7 @@ class CliEnjoyHolidays extends CommonObject
 		if (!$error) {
 			$this->ref = $num;
 			$this->status = self::STATUS_VALIDATED;
+
 		}
 
 		if (!$error) {
@@ -746,7 +747,7 @@ class CliEnjoyHolidays extends CommonObject
 		}
 		$datas['picto'] = img_picto('', $this->picto).' <u>'.$langs->trans("CliEnjoyHolidays").'</u>';
 		if (isset($this->status)) {
-			$datas['picto'] .= ' '.$this->getLibStatut(5);
+			$datas['picto'] .= ' '.$this->getLibStatut(1);
 		}
 		if (property_exists($this, 'ref')) {
 			$datas['ref'] = '<br><b>'.$langs->trans('Ref').':</b> '.$this->ref;
@@ -770,111 +771,116 @@ class CliEnjoyHolidays extends CommonObject
 	 */
 	public function getNomUrl($withpicto = 0, $option = '', $notooltip = 0, $morecss = '', $save_lastsearch_value = -1)
 	{
-		global $conf, $langs, $hookmanager;
+		global $conf, $langs, $hookmanager, $action;
 
-		if (!empty($conf->dol_no_mouse_hover)) {
-			$notooltip = 1; // Force disable tooltips
-		}
-
-		$result = '';
-		$params = [
-			'id' => $this->id,
-			'objecttype' => $this->element.($this->module ? '@'.$this->module : ''),
-			'option' => $option,
-		];
-		$classfortooltip = 'classfortooltip';
-		$dataparams = '';
-		if (getDolGlobalInt('MAIN_ENABLE_AJAX_TOOLTIP')) {
-			$classfortooltip = 'classforajaxtooltip';
-			$dataparams = ' data-params="'.dol_escape_htmltag(json_encode($params)).'"';
-			$label = '';
-		} else {
-			$label = implode($this->getTooltipContentArray($params));
-		}
-
-		$url = dol_buildpath('/clienjoyholidays/clienjoyholidays_card.php', 1).'?id='.$this->id;
-
-		if ($option !== 'nolink') {
-			// Add param to save lastsearch_values or not
-			$add_save_lastsearch_values = ($save_lastsearch_value == 1 ? 1 : 0);
-			if ($save_lastsearch_value == -1 && isset($_SERVER["PHP_SELF"]) && preg_match('/list\.php/', $_SERVER["PHP_SELF"])) {
-				$add_save_lastsearch_values = 1;
+		if($action == 'create'){
+			$result = 'Brouillon';
+			return $result;
+		}else {
+			if (!empty($conf->dol_no_mouse_hover)) {
+				$notooltip = 1; // Force disable tooltips
 			}
-			if ($url && $add_save_lastsearch_values) {
-				$url .= '&save_lastsearch_values=1';
+
+			$result = '';
+			$params = [
+				'id' => $this->id,
+				'objecttype' => $this->element.($this->module ? '@'.$this->module : ''),
+				'option' => $option,
+			];
+			$classfortooltip = 'classfortooltip';
+			$dataparams = '';
+			if (getDolGlobalInt('MAIN_ENABLE_AJAX_TOOLTIP')) {
+				$classfortooltip = 'classforajaxtooltip';
+				$dataparams = ' data-params="'.dol_escape_htmltag(json_encode($params)).'"';
+				$label = '';
+			} else {
+				$label = implode($this->getTooltipContentArray($params));
 			}
-		}
 
-		$linkclose = '';
-		if (empty($notooltip)) {
-			if (getDolGlobalInt('MAIN_OPTIMIZEFORTEXTBROWSER')) {
-				$label = $langs->trans("ShowCliEnjoyHolidays");
-				$linkclose .= ' alt="'.dol_escape_htmltag($label, 1).'"';
-			}
-			$linkclose .= ($label ? ' title="'.dol_escape_htmltag($label, 1).'"' : ' title="tocomplete"');
-			$linkclose .= $dataparams.' class="'.$classfortooltip.($morecss ? ' '.$morecss : '').'"';
-		} else {
-			$linkclose = ($morecss ? ' class="'.$morecss.'"' : '');
-		}
+			$url = dol_buildpath('/clienjoyholidays/clienjoyholidays_card.php', 1).'?id='.$this->id;
 
-		if ($option == 'nolink' || empty($url)) {
-			$linkstart = '<span';
-		} else {
-			$linkstart = '<a href="'.$url.'"';
-		}
-		$linkstart .= $linkclose.'>';
-		if ($option == 'nolink' || empty($url)) {
-			$linkend = '</span>';
-		} else {
-			$linkend = '</a>';
-		}
-
-		$result .= $linkstart;
-
-		if (empty($this->showphoto_on_popup)) {
-			if ($withpicto) {
-				$result .= img_object(($notooltip ? '' : $label), ($this->picto ? $this->picto : 'generic'), (($withpicto != 2) ? 'class="paddingright"' : ''), 0, 0, $notooltip ? 0 : 1);
-			}
-		} else {
-			if ($withpicto) {
-				require_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
-
-				list($class, $module) = explode('@', $this->picto);
-				$upload_dir = $conf->$module->multidir_output[$conf->entity]."/$class/".dol_sanitizeFileName($this->ref);
-				$filearray = dol_dir_list($upload_dir, "files");
-				$filename = $filearray[0]['name'];
-				if (!empty($filename)) {
-					$pospoint = strpos($filearray[0]['name'], '.');
-
-					$pathtophoto = $class.'/'.$this->ref.'/thumbs/'.substr($filename, 0, $pospoint).'_mini'.substr($filename, $pospoint);
-					if (!getDolGlobalString(strtoupper($module.'_'.$class).'_FORMATLISTPHOTOSASUSERS')) {
-						$result .= '<div class="floatleft inline-block valignmiddle divphotoref"><div class="photoref"><img class="photo'.$module.'" alt="No photo" border="0" src="'.DOL_URL_ROOT.'/viewimage.php?modulepart='.$module.'&entity='.$conf->entity.'&file='.urlencode($pathtophoto).'"></div></div>';
-					} else {
-						$result .= '<div class="floatleft inline-block valignmiddle divphotoref"><img class="photouserphoto userphoto" alt="No photo" border="0" src="'.DOL_URL_ROOT.'/viewimage.php?modulepart='.$module.'&entity='.$conf->entity.'&file='.urlencode($pathtophoto).'"></div>';
-					}
-
-					$result .= '</div>';
-				} else {
-					$result .= img_object(($notooltip ? '' : $label), ($this->picto ? $this->picto : 'generic'), ($notooltip ? (($withpicto != 2) ? 'class="paddingright"' : '') : 'class="'.(($withpicto != 2) ? 'paddingright ' : '').'"'), 0, 0, $notooltip ? 0 : 1);
+			if ($option !== 'nolink') {
+				// Add param to save lastsearch_values or not
+				$add_save_lastsearch_values = ($save_lastsearch_value == 1 ? 1 : 0);
+				if ($save_lastsearch_value == -1 && isset($_SERVER["PHP_SELF"]) && preg_match('/list\.php/', $_SERVER["PHP_SELF"])) {
+					$add_save_lastsearch_values = 1;
+				}
+				if ($url && $add_save_lastsearch_values) {
+					$url .= '&save_lastsearch_values=1';
 				}
 			}
-		}
 
-		if ($withpicto != 2) {
-			$result .= $this->ref;
-		}
+			$linkclose = '';
+			if (empty($notooltip)) {
+				if (getDolGlobalInt('MAIN_OPTIMIZEFORTEXTBROWSER')) {
+					$label = $langs->trans("ShowCliEnjoyHolidays");
+					$linkclose .= ' alt="'.dol_escape_htmltag($label, 1).'"';
+				}
+				$linkclose .= ($label ? ' title="'.dol_escape_htmltag($label, 1).'"' : ' title="tocomplete"');
+				$linkclose .= $dataparams.' class="'.$classfortooltip.($morecss ? ' '.$morecss : '').'"';
+			} else {
+				$linkclose = ($morecss ? ' class="'.$morecss.'"' : '');
+			}
 
-		$result .= $linkend;
-		//if ($withpicto != 2) $result.=(($addlabel && $this->label) ? $sep . dol_trunc($this->label, ($addlabel > 1 ? $addlabel : 0)) : '');
+			if ($option == 'nolink' || empty($url)) {
+				$linkstart = '<span';
+			} else {
+				$linkstart = '<a href="'.$url.'"';
+			}
+			$linkstart .= $linkclose.'>';
+			if ($option == 'nolink' || empty($url)) {
+				$linkend = '</span>';
+			} else {
+				$linkend = '</a>';
+			}
 
-		global $action, $hookmanager;
-		$hookmanager->initHooks(array($this->element.'dao'));
-		$parameters = array('id' => $this->id, 'getnomurl' => &$result);
-		$reshook = $hookmanager->executeHooks('getNomUrl', $parameters, $this, $action); // Note that $action and $object may have been modified by some hooks
-		if ($reshook > 0) {
-			$result = $hookmanager->resPrint;
-		} else {
-			$result .= $hookmanager->resPrint;
+			$result .= $linkstart;
+
+			if (empty($this->showphoto_on_popup)) {
+				if ($withpicto) {
+					$result .= img_object(($notooltip ? '' : $label), ($this->picto ? $this->picto : 'generic'), (($withpicto != 2) ? 'class="paddingright"' : ''), 0, 0, $notooltip ? 0 : 1);
+				}
+			} else {
+				if ($withpicto) {
+					require_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
+
+					list($class, $module) = explode('@', $this->picto);
+					$upload_dir = $conf->$module->multidir_output[$conf->entity]."/$class/".dol_sanitizeFileName($this->ref);
+					$filearray = dol_dir_list($upload_dir, "files");
+					$filename = $filearray[0]['name'];
+					if (!empty($filename)) {
+						$pospoint = strpos($filearray[0]['name'], '.');
+
+						$pathtophoto = $class.'/'.$this->ref.'/thumbs/'.substr($filename, 0, $pospoint).'_mini'.substr($filename, $pospoint);
+						if (!getDolGlobalString(strtoupper($module.'_'.$class).'_FORMATLISTPHOTOSASUSERS')) {
+							$result .= '<div class="floatleft inline-block valignmiddle divphotoref"><div class="photoref"><img class="photo'.$module.'" alt="No photo" border="0" src="'.DOL_URL_ROOT.'/viewimage.php?modulepart='.$module.'&entity='.$conf->entity.'&file='.urlencode($pathtophoto).'"></div></div>';
+						} else {
+							$result .= '<div class="floatleft inline-block valignmiddle divphotoref"><img class="photouserphoto userphoto" alt="No photo" border="0" src="'.DOL_URL_ROOT.'/viewimage.php?modulepart='.$module.'&entity='.$conf->entity.'&file='.urlencode($pathtophoto).'"></div>';
+						}
+
+						$result .= '</div>';
+					} else {
+						$result .= img_object(($notooltip ? '' : $label), ($this->picto ? $this->picto : 'generic'), ($notooltip ? (($withpicto != 2) ? 'class="paddingright"' : '') : 'class="'.(($withpicto != 2) ? 'paddingright ' : '').'"'), 0, 0, $notooltip ? 0 : 1);
+					}
+				}
+			}
+
+			if ($withpicto != 2) {
+				$result .= $this->ref;
+			}
+
+			$result .= $linkend;
+			//if ($withpicto != 2) $result.=(($addlabel && $this->label) ? $sep . dol_trunc($this->label, ($addlabel > 1 ? $addlabel : 0)) : '');
+
+			global $action, $hookmanager;
+			$hookmanager->initHooks(array($this->element.'dao'));
+			$parameters = array('id' => $this->id, 'getnomurl' => &$result);
+			$reshook = $hookmanager->executeHooks('getNomUrl', $parameters, $this, $action); // Note that $action and $object may have been modified by some hooks
+			if ($reshook > 0) {
+				$result = $hookmanager->resPrint;
+			} else {
+				$result .= $hookmanager->resPrint;
+			}
 		}
 
 		return $result;
@@ -964,10 +970,10 @@ class CliEnjoyHolidays extends CommonObject
 			global $langs;
 			//$langs->load("clienjoyholidays@clienjoyholidays");
 			$this->labelStatus[self::STATUS_DRAFT] = $langs->transnoentitiesnoconv('Draft');
-			$this->labelStatus[self::STATUS_VALIDATED] = $langs->transnoentitiesnoconv('Enabled');
+			$this->labelStatus[self::STATUS_VALIDATED] = $langs->transnoentitiesnoconv('Validate');
 			$this->labelStatus[self::STATUS_CANCELED] = $langs->transnoentitiesnoconv('Disabled');
 			$this->labelStatusShort[self::STATUS_DRAFT] = $langs->transnoentitiesnoconv('Draft');
-			$this->labelStatusShort[self::STATUS_VALIDATED] = $langs->transnoentitiesnoconv('Enabled');
+			$this->labelStatusShort[self::STATUS_VALIDATED] = $langs->transnoentitiesnoconv('Validate');
 			$this->labelStatusShort[self::STATUS_CANCELED] = $langs->transnoentitiesnoconv('Disabled');
 		}
 
@@ -1060,6 +1066,7 @@ class CliEnjoyHolidays extends CommonObject
 
 		$objectline = new CliEnjoyHolidaysLine($this->db);
 		$result = $objectline->fetchAll('ASC', 'position', 0, 0, array('customsql'=>'fk_clienjoyholidays = '.((int) $this->id)));
+
 
 		if (is_numeric($result)) {
 			$this->setErrorsFromObject($objectline);
