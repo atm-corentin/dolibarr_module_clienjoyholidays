@@ -18,12 +18,9 @@
 #
 
 # Module label 'ModuleMyModuleName'
-ModuleMyModuleName = CliEnjoyHolidays
+ModuleMyModuleName = MyModule
 # Module description 'ModuleMyModuleDesc'
-ModuleMyModuleDesc = Le module clienjoyholidays permet de céer, modifier, supprimer, cloner, lister des formules de voyages
-# Module titre menu gauche 'ModuleMyModuleLeftMenuTitle'
-ModuleMyModuleLeftMenuTitle = Formule de voyage
-
+ModuleMyModuleDesc = MyModule description
 
 #
 # Admin page
@@ -45,12 +42,6 @@ MyModuleAbout = About MyModule
 MyModuleAboutPage = MyModule about page
 
 
-#
-# Sample page
-#
-CliEnjoyHolidaysArea = Home CliEnjoyHolidays
-MyPageName = My page name
-
 
 #
 # Sample widget
@@ -59,15 +50,11 @@ MyWidget = My widget
 MyWidgetDescription = My widget description
 
 
-#
-# Card page
-#
-CliEnjoyHolidaysCardTitle = Nouvelle Formule de voyage
-CEHCreate = Créer une formule de voyage
-
-
-#
-# List page
-#
+CEHInvalidLabel = Le formulaire n’est pas vidé
 CliEnjoyHolidaysListTitle = Formule de voyage
-
+CliEnjoyHolidaysCardTitle = Nouvelle Formle de voyage
+<<<<<<< HEAD
+CEHLabelInf5 = Erreur libelle inérieur à 5
+=======
+CEHCreate = Créer une formule de voyage
+>>>>>>> 93609855da69bbde04421269a01746309601c2d4

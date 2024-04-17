@@ -3,7 +3,7 @@
 
 ## 1.1
 
-Create NEW_CliEnjoyHolidays object
+- NEW : Céation d'un objet Formule de voyage, modification de cet objet, supprimer cet objet, cloner cet objet, lister ces objets
 
 ## 1.0
 

@@ -20,7 +20,10 @@
 # Module label 'ModuleCliEnjoyHolidaysName'
 ModuleCliEnjoyHolidaysName = CliEnjoyHolidays
 # Module description 'ModuleCliEnjoyHolidaysDesc'
-ModuleCliEnjoyHolidaysDesc = Le module clienjoyholidays permet de céer, modifier, supprimer, cloner, lister des formules de voyages
+ModuleCliEnjoyHolidaysDesc = The clienjoyholidays module allows you to create, modify, delete, clone and list travel packages
+# Module left title menu 'ModuleMyModuleLeftMenuTitle'
+ModuleMyModuleLeftMenuTitle = Travel Form
+
 
 #
 # Admin page
@@ -41,14 +44,30 @@ About = About
 CliEnjoyHolidaysAbout = About CliEnjoyHolidays
 CliEnjoyHolidaysAboutPage = CliEnjoyHolidays about page
 
+
 #
 # Sample page
 #
 CliEnjoyHolidaysArea = Home CliEnjoyHolidays
 MyPageName = My page name
 
+
 #
 # Sample widget
 #
 MyWidget = My widget
 MyWidgetDescription = My widget description
+
+
+#
+# Card page
+#
+CliEnjoyHolidaysCardTitle = New Travel Form
+CEHCreate = Create a travel plan
+
+
+#
+# List page
+#
+CliEnjoyHolidaysListTitle = Travel Form
+
