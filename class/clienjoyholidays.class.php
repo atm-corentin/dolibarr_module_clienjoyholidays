@@ -233,11 +233,19 @@ class CliEnjoyHolidays extends CommonObject
 	 */
 	public function create(User $user, $notrigger = false)
 	{
+		global $langs, $error;
 
-		$resultcreate = $this->createCommon($user, $notrigger);
+		if (strlen($this->label)>=5) {
+			$resultcreate = $this->createCommon($user, $notrigger);
+			$error++;
+			return $resultcreate;
+		}
+		if (!$error) {
+			setEventMessages($langs->trans("CEHLabelInf5"), null, 'mesgs');
+		}
 		//$resultvalidate = $this->validate($user, $notrigger);
 
-		return $resultcreate;
+
 	}
 
 	/**
@@ -488,7 +496,16 @@ class CliEnjoyHolidays extends CommonObject
 	 */
 	public function update(User $user, $notrigger = false)
 	{
-		return $this->updateCommon($user, $notrigger);
+
+		global $error, $langs;
+		if (strlen($this->label)>=5) {
+			return $this->updateCommon($user, $notrigger);
+			$error++;
+		}
+
+		if (!$error) {
+			setEventMessages($langs->trans("CEHLabelInf5"), null, 'mesgs');
+		}
 	}
 
 	/**
