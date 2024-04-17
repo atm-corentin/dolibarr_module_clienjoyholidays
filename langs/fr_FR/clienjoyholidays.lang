@@ -40,23 +40,23 @@ MYMODULE_MYPARAM2Tooltip=My param 2 tooltip
 #
 # About page
 #
-About = About
-MyModuleAbout = About MyModule
-MyModuleAboutPage = MyModule about page
+About = A propos
+MyModuleAbout = À propos de MonModule
+MyModuleAboutPage = Page à propos de MyModule
 
 
 #
 # Sample page
 #
-CliEnjoyHolidaysArea = Home CliEnjoyHolidays
-MyPageName = My page name
+CliEnjoyHolidaysArea = Accueil CliEnjoyHolidays
+MyPageName = Le nom de ma page
 
 
 #
 # Sample widget
 #
 MyWidget = My widget
-MyWidgetDescription = My widget description
+MyWidgetDescription = Description de mon widget
 
 
 #
