@@ -71,3 +71,8 @@ CEHCreate = Create a travel plan
 #
 CliEnjoyHolidaysListTitle = Travel Form
 
+#
+# Class
+#
+CEHLabelInf5 = The form is not empty
+

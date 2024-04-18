@@ -8,6 +8,10 @@ All notable changes to this project will be documented in this file.
 
 
 
+## 1.2
+
+- NEW : Set label limit character *17/04/2024* - 1.2.0
+
 ## 1.1
 
 - NEW : Création d'un objet Formule de voyage, modification de cet objet, supprimer cet objet, cloner cet objet, lister ces objets *17/04/2024* - 1.1.0
