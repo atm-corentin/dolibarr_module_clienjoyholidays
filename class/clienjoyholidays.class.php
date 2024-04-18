@@ -237,8 +237,7 @@ class CliEnjoyHolidays extends CommonObject
 		if (strlen($this->label) >= 5) {
 			$resultcreate = $this->createCommon($user, $notrigger);
 			return $resultcreate;
-		}
-		if (strlen($this->label) < 5) {
+		}else {
 			setEventMessages($langs->trans("CEHLabelInf5"), $this->errors, 'errors');
 		}
 		//$resultvalidate = $this->validate($user, $notrigger);
@@ -499,9 +498,7 @@ class CliEnjoyHolidays extends CommonObject
 
 		if (strlen($this->label) >= 5) {
 			return $this->updateCommon($user, $notrigger);
-		}
-
-		if (strlen($this->label) < 5) {
+		}else {
 			setEventMessages($langs->trans("CEHLabelInf5"), $this->errors, 'errors');
 		}
 	}
