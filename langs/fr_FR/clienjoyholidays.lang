@@ -55,7 +55,7 @@ MyPageName = Le nom de ma page
 #
 # Sample widget
 #
-MyWidget = Mon widget
+CEHWidgetLabel = Formule de voyage
 MyWidgetDescription = Description de mon widget
 
 

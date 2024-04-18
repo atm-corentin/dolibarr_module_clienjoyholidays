@@ -236,12 +236,11 @@ class modCliEnjoyHolidays extends DolibarrModules
 		// Add here list of php file(s) stored in clienjoyholidays/core/boxes that contains a class to show a widget.
 		/* BEGIN MODULEBUILDER WIDGETS */
 		$this->boxes = array(
-			//  0 => array(
-			//      'file' => 'clienjoyholidayswidget1.php@clienjoyholidays',
-			//      'note' => 'Widget provided by CliEnjoyHolidays',
-			//      'enabledbydefaulton' => 'Home',
-			//  ),
-			//  ...
+			  0 => array(
+			      'file' => 'clienjoyholidayswidget1.php@clienjoyholidays',
+			      'note' => 'Widget provided by CliEnjoyHolidays',
+			      'enabledbydefaulton' => 'Home',
+			  )
 		);
 		/* END MODULEBUILDER WIDGETS */
 
@@ -310,7 +309,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 			'prefix' => img_picto('', $this->picto, 'class="pictofixedwidth valignmiddle"'),
 			'mainmenu'=>'clienjoyholidaysmain',
 			'leftmenu'=>'clienjoyholidays',
-			'url'=>'/clienjoyholidays/clienjoyholidays_list.php',
+			'url'=>'',
 			'langs'=>'clienjoyholidays@clienjoyholidays', // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
 			'position'=>1000 + $r,
 			'enabled'=>'$conf->clienjoyholidays->enabled', // Define condition to show or hide menu entry. Use '$conf->clienjoyholidays->enabled' if entry must be visible if module is enabled.
