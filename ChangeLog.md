@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file.
 
 ## 1.2
 
-Set label limit character
+- NEW : Set label limit character *17/04/2024* - 1.2.0
 
 ## 1.1
 
