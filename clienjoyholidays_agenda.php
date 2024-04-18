@@ -138,9 +138,12 @@ $enablepermissioncheck = 0;
 if ($enablepermissioncheck) {
 	$permissiontoread = $user->hasRight('clienjoyholidays', 'clienjoyholidays', 'read');
 	$permissiontoadd = $user->hasRight('clienjoyholidays', 'clienjoyholidays', 'write');
+	$permissiontodelete = $user->hasRight('clienjoyholidays', 'clienjoyholidays', 'delete');
+
 } else {
 	$permissiontoread = 1;
 	$permissiontoadd = 1;
+	$permissiontodelete = 1;
 }
 
 // Security check (enable the most restrictive one)

@@ -561,13 +561,13 @@ class CliEnjoyHolidays extends CommonObject
 			return 0;
 		}
 
-		if (! ((!getDolGlobalInt('MAIN_USE_ADVANCED_PERMS') && $user->hasRight('clienjoyholidays', 'clienjoyholidays', 'write'))
-		 || (getDolGlobalInt('MAIN_USE_ADVANCED_PERMS') && $user->hasRight('clienjoyholidays', 'clienjoyholidays_advance', 'validate')))
-		 {
-		 	$this->error='';
-		 	dol_syslog(get_class($this)."::valid ".$this->error, LOG_ERR);
-		 	return -1;
-		 }
+//		if (! ((!getDolGlobalInt('MAIN_USE_ADVANCED_PERMS') && $user->hasRight('clienjoyholidays', 'clienjoyholidays', 'write'))
+//		 || (getDolGlobalInt('MAIN_USE_ADVANCED_PERMS') && $user->hasRight('clienjoyholidays', 'clienjoyholidays_advance', 'validate')))
+//		 {
+//		 	$this->error='';
+//		 	dol_syslog(get_class($this)."::valid ".$this->error, LOG_ERR);
+//		 	return -1;
+//		 }
 
 		$now = dol_now();
 
