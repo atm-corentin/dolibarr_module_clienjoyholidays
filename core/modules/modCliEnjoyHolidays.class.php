@@ -237,7 +237,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 		/* BEGIN MODULEBUILDER WIDGETS */
 		$this->boxes = array(
 			  0 => array(
-			      'file' => 'clienjoyholidayswidget1.php@clienjoyholidays',
+			      'file' => 'box_clienjoyholidays.php@clienjoyholidays',
 			      'note' => '',
 			      'enabledbydefaulton' => 'Home',
 			  )

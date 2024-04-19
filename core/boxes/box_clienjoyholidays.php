@@ -18,7 +18,7 @@
  */
 
 /**
- * \file    clienjoyholidays/core/boxes/clienjoyholidayswidget1.php
+ * \file    clienjoyholidays/core/boxes/box_clienjoyholidays.php
  * \ingroup clienjoyholidays
  * \brief   Widget provided by CliEnjoyHolidays
  *
@@ -34,7 +34,7 @@ include_once DOL_DOCUMENT_ROOT . "/core/boxes/modules_boxes.php";
  * Warning: for the box to be detected correctly by dolibarr,
  * the filename should be the lowercase classname
  */
-class clienjoyholidayswidget1 extends ModeleBoxes
+class box_clienjoyholidays extends ModeleBoxes
 {
 	/**
 	 * @var string Alphanumeric ID. Populated by the constructor.
