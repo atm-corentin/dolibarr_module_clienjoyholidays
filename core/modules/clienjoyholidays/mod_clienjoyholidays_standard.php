@@ -36,7 +36,7 @@ class mod_clienjoyholidays_standard extends ModeleNumRefCliEnjoyHolidays
 	 */
 	public $version = 'dolibarr'; // 'development', 'experimental', 'dolibarr'
 
-	public $prefix = 'MYOBJECT';
+	public $prefix = 'FV';
 
 	/**
 	 * @var string Error code (or message)

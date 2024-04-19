@@ -56,7 +56,8 @@ MyPageName = Le nom de ma page
 # Sample widget
 #
 CEHWidgetLabel = Formule de voyage
-MyWidgetDescription = Description de mon widget
+NoRecordedClienjoyHolidays = Il n'y a pas de formule de voyage
+BoxTitleLastModifiedCliEnjoyHolidays = Les %s dernières formule de voyages modifiées
 
 
 #
