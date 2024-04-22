@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file.
 
 ## 1.4
 
-- NEW : Set permission Read,Write,Delete *19/04/2024* - 1.4.0
+- NEW : Set box to show the 5 latest travel plans *19/04/2024* - 1.4.0
 
 ## 1.3
 
