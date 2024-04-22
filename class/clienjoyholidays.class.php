@@ -237,7 +237,7 @@ class CliEnjoyHolidays extends CommonObject
 		if (strlen($this->label) >= 5) {
 			$resultcreate = $this->createCommon($user, $notrigger);
 			return $resultcreate;
-		}else {
+		} else {
 			setEventMessages($langs->trans("CEHLabelInf5"), $this->errors, 'errors');
 		}
 		//$resultvalidate = $this->validate($user, $notrigger);
@@ -498,7 +498,7 @@ class CliEnjoyHolidays extends CommonObject
 
 		if (strlen($this->label) >= 5) {
 			return $this->updateCommon($user, $notrigger);
-		}else {
+		} else {
 			setEventMessages($langs->trans("CEHLabelInf5"), $this->errors, 'errors');
 		}
 	}
@@ -556,13 +556,13 @@ class CliEnjoyHolidays extends CommonObject
 			return 0;
 		}
 
-		/* if (! ((!getDolGlobalInt('MAIN_USE_ADVANCED_PERMS') && $user->hasRight('clienjoyholidays', 'clienjoyholidays', 'write'))
-		 || (getDolGlobalInt('MAIN_USE_ADVANCED_PERMS') && $user->hasRight('clienjoyholidays', 'clienjoyholidays_advance', 'validate')))
-		 {
-		 $this->error='NotEnoughPermissions';
-		 dol_syslog(get_class($this)."::valid ".$this->error, LOG_ERR);
-		 return -1;
-		 }*/
+//		if (! ((!getDolGlobalInt('MAIN_USE_ADVANCED_PERMS') && $user->hasRight('clienjoyholidays', 'clienjoyholidays', 'write'))
+//		 || (getDolGlobalInt('MAIN_USE_ADVANCED_PERMS') && $user->hasRight('clienjoyholidays', 'clienjoyholidays_advance', 'validate')))
+//		 {
+//		 	$this->error='';
+//		 	dol_syslog(get_class($this)."::valid ".$this->error, LOG_ERR);
+//		 	return -1;
+//		 }
 
 		$now = dol_now();
 
@@ -682,13 +682,13 @@ class CliEnjoyHolidays extends CommonObject
 		if ($this->status <= self::STATUS_DRAFT) {
 			return 0;
 		}
-
-		/* if (! ((!getDolGlobalInt('MAIN_USE_ADVANCED_PERMS') && $user->hasRight('clienjoyholidays','write'))
-		 || (getDolGlobalInt('MAIN_USE_ADVANCED_PERMS') && $user->hasRight('clienjoyholidays','clienjoyholidays_advance','validate'))))
-		 {
-		 $this->error='Permission denied';
-		 return -1;
-		 }*/
+//
+//		if (! ((!getDolGlobalInt('MAIN_USE_ADVANCED_PERMS') && $user->hasRight('clienjoyholidays','write'))
+//			|| (getDolGlobalInt('MAIN_USE_ADVANCED_PERMS') && $user->hasRight('clienjoyholidays','clienjoyholidays_advance','validate'))))
+//		 {
+//		 	$this->error='Permission denied';
+//		 	return -1;
+//		 }
 
 		return $this->setStatusCommon($user, self::STATUS_DRAFT, $notrigger, 'CLIENJOYHOLIDAYS_MYOBJECT_UNVALIDATE');
 	}
@@ -707,12 +707,11 @@ class CliEnjoyHolidays extends CommonObject
 			return 0;
 		}
 
-		/* if (! ((!getDolGlobalInt('MAIN_USE_ADVANCED_PERMS') && $user->hasRight('clienjoyholidays','write'))
-		 || (getDolGlobalInt('MAIN_USE_ADVANCED_PERMS') && $user->hasRight('clienjoyholidays','clienjoyholidays_advance','validate'))))
-		 {
-		 $this->error='Permission denied';
-		 return -1;
-		 }*/
+		if (!((!getDolGlobalInt('MAIN_USE_ADVANCED_PERMS') && $user->hasRight('clienjoyholidays', 'write'))
+			|| (getDolGlobalInt('MAIN_USE_ADVANCED_PERMS') && $user->hasRight('clienjoyholidays', 'clienjoyholidays_advance', 'validate')))) {
+			$this->error = 'Permission denied';
+			return -1;
+		}
 
 		return $this->setStatusCommon($user, self::STATUS_CANCELED, $notrigger, 'CLIENJOYHOLIDAYS_MYOBJECT_CANCEL');
 	}
@@ -731,12 +730,11 @@ class CliEnjoyHolidays extends CommonObject
 			return 0;
 		}
 
-		/*if (! ((!getDolGlobalInt('MAIN_USE_ADVANCED_PERMS') && $user->hasRight('clienjoyholidays','write'))
-		 || (getDolGlobalInt('MAIN_USE_ADVANCED_PERMS') && $user->hasRight('clienjoyholidays','clienjoyholidays_advance','validate'))))
-		 {
-		 $this->error='Permission denied';
-		 return -1;
-		 }*/
+		if (!((!getDolGlobalInt('MAIN_USE_ADVANCED_PERMS') && $user->hasRight('clienjoyholidays', 'write'))
+			|| (getDolGlobalInt('MAIN_USE_ADVANCED_PERMS') && $user->hasRight('clienjoyholidays', 'clienjoyholidays_advance', 'validate')))) {
+			$this->error = 'Permission denied';
+			return -1;
+		}
 
 		return $this->setStatusCommon($user, self::STATUS_VALIDATED, $notrigger, 'CLIENJOYHOLIDAYS_MYOBJECT_REOPEN');
 	}
