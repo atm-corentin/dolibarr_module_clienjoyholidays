@@ -90,6 +90,7 @@ class InterfaceCliEnjoyHolidaysTriggers extends DolibarrTriggers
 	 */
 	public function runTrigger($action, $object, User $user, Translate $langs, Conf $conf)
 	{
+		global $db;
 		if (!isModEnabled('clienjoyholidays')) {
 			return 0; // If module is not enabled, we do nothing
 		}
@@ -112,15 +113,29 @@ class InterfaceCliEnjoyHolidaysTriggers extends DolibarrTriggers
 		// Or you can execute some code here
 		switch ($action) {
 			case  'CLIENJOYHOLIDAYS_CREATE':
-				if (empty($object->amount))
-				{
-					$object->amount = $conf->global->CLIENJOYHOLIDAYS_DEFAULTAMOUNT;
-					$object->date_creation = dol_now();
-					$object->updateCommon($user);
-
+				if (empty($object->amount)) {
+					$sql = 'SELECT country FROM ' . MAIN_DB_PREFIX . 'c_defaultpricecountry WHERE country = ' . $object->fk_destination_country;
+					$res = $this->db->query($sql);
+//					var_dump($res);die();
+					if ($res != '') {
+						var_dump('test');
+						$sql = 'SELECT amount FROM ' . MAIN_DB_PREFIX . 'c_defaultpricecountry WHERE country =' . $object->fk_destination_country;
+						$resql = $this->db->query($sql);
+						if ($resql) {
+							$obj = $this->db->fetch_object($resql);
+							$object->amount = $obj->amount;
+							$object->date_creation = dol_now();
+							$res = $object->updateCommon($user);
+						} else {
+							exit();
+						}
+					} else {
+						$object->amount = $conf->global->CLIENJOYHOLIDAYS_DEFAULTAMOUNT;
+						$object->date_creation = dol_now();
+						$object->updateCommon($user);
+					}
 
 				}
-
 
 
 			// and more...
