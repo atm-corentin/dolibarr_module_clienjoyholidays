@@ -18,6 +18,6 @@ create table llx_c_defaultpricecountry
 (
     rowid       integer AUTO_INCREMENT PRIMARY KEY,
     country     integer UNIQUE NOT NULL,
-    amount      double DEFAULT NULL ,
+    amount      double  DEFAULT NOT NULL ,
     active      tinyint DEFAULT 1 NOT NULL
 )ENGINE=innodb;

@@ -98,6 +98,7 @@ $formSetup = new FormSetup($db);
 $item = $formSetup->newItem('CLIENJOYHOLIDAYS_DEFAULTAMOUNT');
 $item->cssClass = 'minwidth500';
 
+
 $setupnotempty += count($formSetup->items);
 
 

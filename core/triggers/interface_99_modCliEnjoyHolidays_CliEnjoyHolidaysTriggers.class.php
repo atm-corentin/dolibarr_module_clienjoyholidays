@@ -114,25 +114,24 @@ class InterfaceCliEnjoyHolidaysTriggers extends DolibarrTriggers
 		switch ($action) {
 			case  'CLIENJOYHOLIDAYS_CREATE':
 				if (empty($object->amount)) {
-					$sql = 'SELECT country FROM ' . MAIN_DB_PREFIX . 'c_defaultpricecountry WHERE country = ' . $object->fk_destination_country;
-					$res = $this->db->query($sql);
-//					var_dump($res);die();
-					if ($res != '') {
-						var_dump('test');
-						$sql = 'SELECT amount FROM ' . MAIN_DB_PREFIX . 'c_defaultpricecountry WHERE country =' . $object->fk_destination_country;
-						$resql = $this->db->query($sql);
-						if ($resql) {
+					$sql = 'SELECT amount FROM ' . MAIN_DB_PREFIX . 'c_defaultpricecountry WHERE country = ' . $object->fk_destination_country;
+					$resql = $this->db->query($sql);
+					if ($resql) {
+//						var_dump($resql->num_rows);die();
+
+						if ($resql->num_rows == 1) {
+//							var_dump($obj);die();
 							$obj = $this->db->fetch_object($resql);
 							$object->amount = $obj->amount;
 							$object->date_creation = dol_now();
 							$res = $object->updateCommon($user);
-						} else {
-							exit();
+						}else {
+							$object->amount = $conf->global->CLIENJOYHOLIDAYS_DEFAULTAMOUNT;
+							$object->date_creation = dol_now();
+							$object->updateCommon($user);
 						}
-					} else {
-						$object->amount = $conf->global->CLIENJOYHOLIDAYS_DEFAULTAMOUNT;
-						$object->date_creation = dol_now();
-						$object->updateCommon($user);
+					}else{
+						setEventMessages($langs->trans("ErrorInvalidRequest"), null, 'errors');
 					}
 
 				}
