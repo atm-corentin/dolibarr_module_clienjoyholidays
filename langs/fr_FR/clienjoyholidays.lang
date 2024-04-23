@@ -28,8 +28,8 @@ ModuleMyModuleLeftMenuTitle = Formule de voyage
 #
 # Admin page
 #
-MyModuleSetup = MyModule setup
-Settings = Settings
+MyModuleSetup = Paramètre module
+Settings = Paramètre
 MyModuleSetupPage = MyModule setup page
 MYMODULE_MYPARAM1 = My param 1
 MYMODULE_MYPARAM1Tooltip = My param 1 tooltip

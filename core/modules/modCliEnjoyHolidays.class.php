@@ -309,7 +309,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 			'prefix' => img_picto('', $this->picto, 'class="pictofixedwidth valignmiddle"'),
 			'mainmenu'=>'clienjoyholidaysmain',
 			'leftmenu'=>'clienjoyholidays',
-			'url'=>'',
+			'url'=>'/clienjoyholidays/clienjoyholidays_list.php',
 			'langs'=>'clienjoyholidays@clienjoyholidays', // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
 			'position'=>1000 + $r,
 			'enabled'=>'$conf->clienjoyholidays->enabled', // Define condition to show or hide menu entry. Use '$conf->clienjoyholidays->enabled' if entry must be visible if module is enabled.
