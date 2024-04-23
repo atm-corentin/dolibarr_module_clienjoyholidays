@@ -55,7 +55,7 @@ MyPageName = My page name
 #
 # Sample widget
 #
-CEHWidgetLabel = Formule de voyage
+CEHWidgetLabel = travel plan
 NoRecordedClienjoyHolidays = There is no travel formula
 BoxTitleLastModifiedCliEnjoyHolidays = Latest %s modified travel packages
 
