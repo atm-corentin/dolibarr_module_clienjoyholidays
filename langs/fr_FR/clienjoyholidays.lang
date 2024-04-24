@@ -28,7 +28,7 @@ DictionaryDefaultPriceCountry = Prix par défaut par pays
 # Titre de la conf 'CLIENJOYHOLIDAYS_DEFAULTAMOUNT'
 CLIENJOYHOLIDAYS_DEFAULTAMOUNT = Montant par défaut
 # Definit un motant par défaut pour une forule de voyage 'CLIENJOYHOLIDAYS_DEFAULTAMOUNTTooltip'
-CLIENJOYHOLIDAYS_DEFAULTAMOUNTTooltip= Saisir le montant par défaut pour unr formule de voyage
+CLIENJOYHOLIDAYS_DEFAULTAMOUNTTooltip= Saisir le montant par défaut pour une formule de voyage
 
 
 #
