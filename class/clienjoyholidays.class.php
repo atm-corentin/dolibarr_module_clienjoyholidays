@@ -1213,6 +1213,35 @@ class CliEnjoyHolidays extends CommonObject
 
 		return $error;
 	}
+
+
+	public static function getDefaultPrice($country_id)
+	{
+		global $db,$conf;
+
+		$sql = "SELECT amount FROM ".$db->prefix()."c_defaultpricecountry";
+		$sql .= " WHERE country = ".intval($country_id). ";";
+
+		$result = $db->query($sql);
+
+		$amount = 0;
+
+		if($result){
+
+			if ($db->num_rows($result)==1) {
+				$obj = $db->fetch_object($result);
+				$amount = $obj->amount;
+			}elseif ($db->num_rows($result)==0){
+				$amount = $conf->global->CLIENJOYHOLIDAYS_DEFAULTAMOUNT;
+			}else{
+				exit;
+			}
+
+
+		}
+		return json_encode($amount);
+
+	}
 }
 
 

@@ -280,6 +280,7 @@ llxHeader('', $title, $help_url, '', 0, 0, '', '', '', 'mod-clienjoyholidays pag
 
 // Part to create
 if ($action == 'create') {
+
 	if (empty($permissiontoadd)) {
 		accessforbidden('NotEnoughPermissions', 0, 1);
 	}
@@ -320,6 +321,29 @@ if ($action == 'create') {
 	print dol_get_fiche_end();
 
 	print $form->buttonsSaveCancel($langs->trans("CEHCreate"));
+
+	?>
+
+	<script>
+		$('#fk_destination_country').change(function(){
+			var rowid = $(this).val();
+			$.ajax({
+				url: "<?= dol_buildpath('/clienjoyholidays/scripts/interface.php', 1); ?>",
+				dataType: "json",
+				data: {
+					get: 'defaultPrice',
+					data: rowid
+				},
+				success: function (data){
+					$('#amount').val(data);
+				}
+			}).fail(function(error){
+				console.log("La requête s'est terminée en échec. Infos : " + JSON.stringify(error));
+			})
+		});
+	</script>
+
+<?php
 
 	print '</form>';
 
