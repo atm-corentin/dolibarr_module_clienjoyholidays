@@ -23,6 +23,12 @@ ModuleCliEnjoyHolidaysName = CliEnjoyHolidays
 ModuleCliEnjoyHolidaysDesc = The clienjoyholidays module allows you to create, modify, delete, clone and list travel packages
 # Module left title menu 'ModuleMyModuleLeftMenuTitle'
 ModuleMyModuleLeftMenuTitle = Travel Form
+# Dictionary title to have a default price for a country 'DictionaryDefaultPriceCountry'
+DictionaryDefaultPriceCountry = Default price by country
+# Conf title 'CLIENJOYHOLIDAYS_DEFAULTAMOUNT'
+CLIENJOYHOLIDAYS_DEFAULTAMOUNT = Default amount
+# Defines a default wording for a travel formula 'CLIENJOYHOLIDAYS_DEFAULTAMOUNTTooltip'
+CLIENJOYHOLIDAYS_DEFAULTAMOUNTTooltip= Enter the default amount for a travel package
 
 
 #
@@ -76,4 +82,3 @@ CliEnjoyHolidaysListTitle = Travel Form
 # Class
 #
 CEHLabelInf5 = The form is not empty
-

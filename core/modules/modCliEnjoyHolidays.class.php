@@ -206,7 +206,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 		$this->dictionaries=array(
 			'langs'=>'clienjoyholidays@clienjoyholidays',
 			'tabname'=>array("c_defaultpricecountry"),// List of tables we want to see into dictonnary editor
-			'tablib'=>array("DictionaryDefaultPriceCountry"),// Label of tables
+			'tablib'=>array($langs->trans("DictionaryDefaultPriceCountry")),// Label of tables
 			'tabsql'=>array("SELECT r.rowid as rowid, r.amount as amount, r.active as active, c.label as country, c.code as country_code FROM ".MAIN_DB_PREFIX."c_defaultpricecountry as r JOIN ".MAIN_DB_PREFIX."c_country as c ON r.country = c.rowid"),
 			'tabsqlsort'=>array("country ASC"),// Sort order
 			'tabfield'=>array("country,amount"),// List of fields (result of select to show dictionary)

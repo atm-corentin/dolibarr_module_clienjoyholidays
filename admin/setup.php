@@ -16,6 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+
 /**
  * \file    clienjoyholidays/admin/setup.php
  * \ingroup clienjoyholidays
@@ -97,6 +98,7 @@ $formSetup = new FormSetup($db);
 // Setup conf for selection of an URL
 $item = $formSetup->newItem('CLIENJOYHOLIDAYS_DEFAULTAMOUNT');
 $item->cssClass = 'minwidth500';
+//$item->helpText = $langs->transnoentities('AmountDefaultDesc');
 
 
 $setupnotempty += count($formSetup->items);
