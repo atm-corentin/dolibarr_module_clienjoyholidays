@@ -226,7 +226,7 @@ if ($action == 'updateMask') {
 $form = new Form($db);
 
 $help_url = '';
-$page_name = "CliEnjoyHolidaysSetup";
+$page_name = $langs->trans("CliEnjoyHolidaysSetup");
 
 llxHeader('', $langs->trans($page_name), $help_url, '', 0, 0, '', '', '', 'mod-clienjoyholidays page-admin');
 

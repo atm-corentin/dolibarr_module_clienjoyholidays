@@ -25,22 +25,19 @@ ModuleCliEnjoyHolidaysDesc = The clienjoyholidays module allows you to create, m
 ModuleMyModuleLeftMenuTitle = Travel Form
 # Dictionary title to have a default price for a country 'DictionaryDefaultPriceCountry'
 DictionaryDefaultPriceCountry = Default price by country
-# Conf title 'CLIENJOYHOLIDAYS_DEFAULTAMOUNT'
-CLIENJOYHOLIDAYS_DEFAULTAMOUNT = Default amount
-# Defines a default wording for a travel formula 'CLIENJOYHOLIDAYS_DEFAULTAMOUNTTooltip'
-CLIENJOYHOLIDAYS_DEFAULTAMOUNTTooltip= Enter the default amount for a travel package
-
 
 #
 # Admin page
 #
-CliEnjoyHolidaysSetup = CliEnjoyHolidays setup
-Settings = Settings
-CliEnjoyHolidaysSetupPage = CliEnjoyHolidays setup page
-CLIENJOYHOLIDAYS_MYPARAM1 = My param 1
-CLIENJOYHOLIDAYS_MYPARAM1Tooltip = My param 1 tooltip
-CLIENJOYHOLIDAYS_MYPARAM2=My param 2
-CLIENJOYHOLIDAYS_MYPARAM2Tooltip=My param 2 tooltip
+
+# Title of the parameter page 'CliEnjoyHolidaysSetup'
+CliEnjoyHolidaysSetup = Travel Plan Settings
+Settings = Parameter
+CliEnjoyHolidaysSetupPage = Setup page
+# Conf title 'CLIENJOYHOLIDAYS_DEFAULTAMOUNT'
+CLIENJOYHOLIDAYS_DEFAULTAMOUNT = Default amount
+# Defines a default wording for a travel formula 'CLIENJOYHOLIDAYS_DEFAULTAMOUNTTooltip'
+CLIENJOYHOLIDAYS_DEFAULTAMOUNTTooltip= Enter the default amount for a travel package
 
 
 #

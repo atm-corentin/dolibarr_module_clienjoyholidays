@@ -25,22 +25,19 @@ ModuleMyModuleDesc = Le module clienjoyholidays permet de céer, modifier, suppr
 ModuleMyModuleLeftMenuTitle = Formule de voyage
 # Titre du dictionnaire pour avoir un prix par defaut pour un pays 'DictionaryDefaultPriceCountry'
 DictionaryDefaultPriceCountry = Prix par défaut par pays
-# Titre de la conf 'CLIENJOYHOLIDAYS_DEFAULTAMOUNT'
-CLIENJOYHOLIDAYS_DEFAULTAMOUNT = Montant par défaut
-# Definit un motant par défaut pour une forule de voyage 'CLIENJOYHOLIDAYS_DEFAULTAMOUNTTooltip'
-CLIENJOYHOLIDAYS_DEFAULTAMOUNTTooltip= Saisir le montant par défaut pour une formule de voyage
-
 
 #
 # Admin page
 #
-MyModuleSetup = Paramètre module
+
+# Titre de la page paramètre 'CliEnjoyHolidaysSetup'
+CliEnjoyHolidaysSetup = Paramètres Formule de voyage
 Settings = Paramètre
-MyModuleSetupPage = MyModule setup page
-MYMODULE_MYPARAM1 = My param 1
-MYMODULE_MYPARAM1Tooltip = My param 1 tooltip
-MYMODULE_MYPARAM2=My param 2
-MYMODULE_MYPARAM2Tooltip=My param 2 tooltip
+CliEnjoyHolidaysSetupPage = Page de configuration
+# Titre de la conf 'CLIENJOYHOLIDAYS_DEFAULTAMOUNT'
+CLIENJOYHOLIDAYS_DEFAULTAMOUNT = Montant par défaut
+# Definit un motant par défaut pour une forule de voyage 'CLIENJOYHOLIDAYS_DEFAULTAMOUNTTooltip'
+CLIENJOYHOLIDAYS_DEFAULTAMOUNTTooltip= Saisir le montant par défaut pour une formule de voyage
 
 
 #
