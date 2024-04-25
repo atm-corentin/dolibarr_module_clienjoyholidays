@@ -623,7 +623,9 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 			$buttonId = 'action-delete-no-ajax';
 
 		}
-		print '</div>' . "\n";
+		if ($reshook > 0) {
+			print '</div>' . "\n";
+		}
 	}
 
 
