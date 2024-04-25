@@ -60,32 +60,12 @@ class ActionsCliEnjoyHolidays
 	 * @return  int                             < 0 on error, 0 on success, 1 to replace standard code
 	 */
 	function addMoreActionsButtons($parameters, &$object, &$action, $hookmanager) {
+		global $langs;
+
 
 		if (in_array('propalcard', explode(':', $parameters['context'])) )
 		{
-			global $conf;
-			$object->fetch_optionals($object->id);
-			if(!empty($conf->global->EXPORT_COMPTA_HIDE_GENERATE_FACTURE) && !empty($object->array_options['options_date_compta'])  ) {
-				?>
-				<script>$(() => {$('input#builddoc_generatebutton').parent().hide();});</script>
-				<?php
-			}
-
-			if(!empty($conf->global->EXPORT_COMPTA_HIDE_REOPEN_INVOICE) && !empty($object->array_options['options_date_compta'])) {
-				?>
-				<script language="javascript">
-					$(document).ready(function() {
-						$('.butAction').each(function(){
-							href = $(this).attr('href');
-							if(href.indexOf('action=reopen') > 0 || href.indexOf('action=modif') > 0 || href.indexOf('action=canceled') > 0){
-								$(this).hide();
-							}
-						})
-					}  );
-				</script>
-				<?php
-			}
-			return 0;
+			print '<a class="butAction" href="'.DOL_URL_ROOT.'/custom/clienjoyholidays/clienjoyholidays_card.php?action=create&origin='.$object->element.'&originid='.$object->id.'&socid='.$object->socid.'">'.$langs->trans("CreateCliEnjoyHolidays").'</a>';
 		}
 
 	}
