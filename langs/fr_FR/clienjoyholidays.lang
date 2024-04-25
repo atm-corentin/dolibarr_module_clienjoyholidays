@@ -20,7 +20,7 @@
 # Module label 'ModuleMyModuleName'
 ModuleMyModuleName = CliEnjoyHolidays
 # Module description 'ModuleMyModuleDesc'
-ModuleMyModuleDesc = Le module clienjoyholidays permet de céer, modifier, supprimer, cloner, lister des formules de voyages
+ModuleCliEnjoyHolidaysDesc = Le module clienjoyholidays permet de céer, modifier, supprimer, cloner, lister des formules de voyages
 # Module titre menu gauche 'ModuleMyModuleLeftMenuTitle'
 ModuleMyModuleLeftMenuTitle = Formule de voyage
 # Titre du dictionnaire pour avoir un prix par defaut pour un pays 'DictionaryDefaultPriceCountry'
@@ -79,3 +79,4 @@ CliEnjoyHolidaysListTitle = Formule de voyage
 # Class
 #
 CEHLabelInf5 = Le formulaire n’est pas vidé
+ErrorInvalidRequest = la requete ne retourne rien
