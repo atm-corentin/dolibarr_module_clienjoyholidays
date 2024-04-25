@@ -79,3 +79,4 @@ CliEnjoyHolidaysListTitle = Travel Form
 # Class
 #
 CEHLabelInf5 = The form is not empty
+ErrorInvalidRequest = empty request

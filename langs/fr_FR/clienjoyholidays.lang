@@ -79,3 +79,4 @@ CliEnjoyHolidaysListTitle = Formule de voyage
 # Class
 #
 CEHLabelInf5 = Le formulaire n’est pas vidé
+ErrorInvalidRequest = la requete ne retourne rien
