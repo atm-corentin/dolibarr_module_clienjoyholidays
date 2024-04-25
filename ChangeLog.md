@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 
 
 ## 1.5
-- NEW : Set default price for travel plan  *19/04/2024* - 1.4.0
+- NEW : Set default price for travel plan  *24/04/2024* - 1.5.0
 
 
 ## 1.4
