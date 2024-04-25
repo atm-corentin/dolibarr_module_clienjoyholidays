@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 ## Unreleased
 
 
+## 1.4
+
+- NEW : Set box to show the 5 latest travel plans *19/04/2024* - 1.4.0
+
 ## 1.3
 
 - NEW : Set permission Read,Write,Delete *18/04/2024* - 1.3.0
