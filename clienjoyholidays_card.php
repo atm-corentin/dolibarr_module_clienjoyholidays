@@ -106,6 +106,7 @@ $backtopage = GETPOST('backtopage', 'alpha');                    // if not set, 
 $backtopageforcancel = GETPOST('backtopageforcancel', 'alpha');    // if not set, $backtopage will be used
 $backtopagejsfields = GETPOST('backtopagejsfields', 'alpha');
 $dol_openinpopup = GETPOST('dol_openinpopup', 'aZ09');
+$propalid = GETPOSTINT('propalid');
 
 if (!empty($backtopagejsfields)) {
 	$tmpbacktopagejsfields = explode(':', $backtopagejsfields);
@@ -305,6 +306,11 @@ if ($action == 'create') {
 	}
 	if ($dol_openinpopup) {
 		print '<input type="hidden" name="dol_openinpopup" value="' . $dol_openinpopup . '">';
+	}
+
+	if($propalid){
+		print '<input type="hidden" name="propalid" value="' . $propalid . '">';
+
 	}
 
 	print dol_get_fiche_head(array(), '');

@@ -235,6 +235,9 @@ class CliEnjoyHolidays extends CommonObject
 	{
 		global $langs, $conf, $db, $error;
 
+		$propalId = GETPOSTINT('propalid');
+
+		$this->element
 
 		if (strlen($this->label) >= 5) {
 

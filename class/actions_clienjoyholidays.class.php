@@ -67,12 +67,12 @@ class ActionsCliEnjoyHolidays
 
 
 		if (in_array('propalcard', explode(':', $parameters['context']))) {
-			print '<a class="butAction" href="' . DOL_URL_ROOT . '/custom/clienjoyholidays/clienjoyholidays_card.php?action=create&origin=' . $object->element . '&originid=' . $object->id . '&socid=' . $object->socid . '">' . $langs->trans("CEHCreate") . '</a>';
+			print '<a class="butAction" href="' . DOL_URL_ROOT . '/custom/clienjoyholidays/clienjoyholidays_card.php?action=create&origin=' . $object->element . '&originid=' . $object->id . '&socid=' . $object->socid . '&propalid=' . $object->id.'">' . $langs->trans("CEHCreate") . '</a>';
 
 
 		}
 
 	}
 
-	
+
 }
