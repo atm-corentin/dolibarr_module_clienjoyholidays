@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## 1.6
+- FIX : Print default price when you create a travel plan  *25/04/2024* - 1.6.0
+
+## 1.5
+- NEW : Set default price for travel plan  *19/04/2024* - 1.4.0
 
 ## 1.4
 
@@ -20,7 +25,7 @@ All notable changes to this project will be documented in this file.
 
 ## 1.1
 
-- NEW : Création d'un objet Formule de voyage, modification de cet objet, supprimer cet objet, cloner cet objet, lister ces objets *17/04/2024* - 1.1.0
+- NEW : Create a Travel Plan object, modify this object, delete this object, clone this object, list these objects *17/04/2024* - 1.1.0
 
 ## 1.0
 

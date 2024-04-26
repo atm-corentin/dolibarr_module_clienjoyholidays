@@ -23,6 +23,10 @@ ModuleCliEnjoyHolidaysName = CliEnjoyHolidays
 ModuleCliEnjoyHolidaysDesc = The clienjoyholidays module allows you to create, modify, delete, clone and list travel packages
 # Module left title menu 'ModuleMyModuleLeftMenuTitle'
 ModuleMyModuleLeftMenuTitle = Travel Form
+<<<<<<< HEAD
+# Dictionary title to have a default price for a country 'DictionaryDefaultPriceCountry'
+DictionaryDefaultPriceCountry = Default price by country
+=======
 # Module permission add 'CreateUpdateobjectsofCliEnjoyHolidays'
 CreateUpdateobjectsofCliEnjoyHolidays = 'Create/Update travel plans '
 # Module permission read 'ReadobjectsofCliEnjoyHolidays'
@@ -30,9 +34,8 @@ ReadobjectsofCliEnjoyHolidays = 'Consult the travel plans'
 # Module permission delete 'DeleteobjectsofChiffrage'
 DeleteobjectsofChiffrage = 'Delete travel plan'
 
-# Dictionary title to have a default price for a country 'DictionaryDefaultPriceCountry'
-DictionaryDefaultPriceCountry = Default price by country
 
+>>>>>>> 043ca49f7eb12daa9d5db313a12e3560151b5388
 
 #
 # Admin page

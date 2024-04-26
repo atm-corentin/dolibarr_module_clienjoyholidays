@@ -88,7 +88,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 		// Define some features supported by module (triggers, login, substitutions, menus, css, etc...)
 		$this->module_parts = array(
 			// Set this to 1 if module has its own trigger directory (core/triggers)
-			'triggers' => 1,
+			'triggers' => 0,
 			// Set this to 1 if module has its own login method file (core/login)
 			'login' => 0,
 			// Set this to 1 if module has its own substitution function file (core/substitutions)
@@ -265,17 +265,17 @@ class modCliEnjoyHolidays extends DolibarrModules
 		$this->rights[$r][5] = '';
 		$r++;
 		$this->rights[$r][0] = $this->numero . sprintf('%02d', (1 * 10) + 0 + 1);
-		$this->rights[$r][1] = 'Read CliEnjoyHolidays object of CliEnjoyHolidays';
+		$this->rights[$r][1] = $langs->trans('ReadobjectsofCliEnjoyHolidays');
 		$this->rights[$r][4] = 'clienjoyholidays';
 		$this->rights[$r][5] = 'read';
 		$r++;
 		$this->rights[$r][0] = $this->numero . sprintf('%02d', (1 * 10) + 1 + 1);
-		$this->rights[$r][1] = 'Create/Update CliEnjoyHolidays object of CliEnjoyHolidays';
+		$this->rights[$r][1] = $langs->trans('CreateUpdateobjectsofCliEnjoyHolidays');
 		$this->rights[$r][4] = 'clienjoyholidays';
 		$this->rights[$r][5] = 'write';
 		$r++;
 		$this->rights[$r][0] = $this->numero . sprintf('%02d', (1 * 10) + 2 + 1);
-		$this->rights[$r][1] = 'Delete CliEnjoyHolidays object of CliEnjoyHolidays';
+		$this->rights[$r][1] = $langs->trans('DeleteobjectsofCliEnjoyHolidays');
 		$this->rights[$r][4] = 'clienjoyholidays';
 		$this->rights[$r][5] = 'delete';
 		$r++;
