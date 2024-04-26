@@ -74,9 +74,5 @@ class ActionsCliEnjoyHolidays
 
 	}
 
-	function doActions($parameters, &$object, &$action, $hookmanager)
-	{
-
-	}
-
+	
 }

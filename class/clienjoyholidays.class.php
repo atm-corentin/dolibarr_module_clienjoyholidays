@@ -35,13 +35,13 @@ class CliEnjoyHolidays extends CommonObject
 {
 	/**
 	 * @var string ID of module.
-	 */
-	public $module = 'clienjoyholidays';
+//	 */
+//	public $module = 'clienjoyholidays';
 
 	/**
 	 * @var string ID to identify managed object.
 	 */
-	public $element = 'clienjoyholidays';
+	public $element = 'clienjoyholidays_clienjoyholidays';
 
 	/**
 	 * @var string Name of table without prefix where object is stored. This is also the key used for extrafields management.
@@ -204,6 +204,7 @@ class CliEnjoyHolidays extends CommonObject
 			$this->fields['myfield']['noteditable'] = 0;
 		}*/
 
+
 		// Unset fields that are disabled
 		foreach ($this->fields as $key => $val) {
 			if (isset($val['enabled']) && empty($val['enabled'])) {
@@ -232,14 +233,15 @@ class CliEnjoyHolidays extends CommonObject
 	 */
 	public function create(User $user, $notrigger = false)
 	{
-		global $langs, $conf, $db;
+		global $langs, $conf, $db, $error;
+
 
 		if (strlen($this->label) >= 5) {
 
 
 			if (empty($this->amount)) {
 				$sql = 'SELECT amount';
-				$sql .= ' FROM '.MAIN_DB_PREFIX.'c_defaultpricecountry';
+				$sql .= ' FROM ' . MAIN_DB_PREFIX . 'c_defaultpricecountry';
 				$sql .= ' WHERE country = ' . $this->fk_destination_country . ' AND active= 1';
 				$resql = $this->db->query($sql);
 				if ($resql) {
@@ -259,11 +261,37 @@ class CliEnjoyHolidays extends CommonObject
 				}
 
 			}
+
 			$resultcreate = $this->createCommon($user, $notrigger);
+
+			if (!$error && $this->id && !empty($this->linked_objects) && is_array($this->linked_objects)) {
+
+				foreach ($this->linked_objects as $origin => $tmp_origin_id) {
+					if (is_array($tmp_origin_id)) {       // New behaviour, if linked_object can have several links per type, so is something like array('contract'=>array(id1, id2, ...))
+						foreach ($tmp_origin_id as $origin_id) {
+							$ret = $this->add_object_linked($origin, $origin_id);
+							if (!$ret) {
+								$this->error = $this->db->lasterror();
+								$error++;
+							}
+						}
+					} else { // Old behaviour, if linked_object has only one link per type, so is something like array('contract'=>id1))
+						$origin_id = $tmp_origin_id;
+						$ret = $this->add_object_linked($origin, $origin_id);
+						if (!$ret) {
+							$this->error = $this->db->lasterror();
+							$error++;
+						}
+					}
+				}
+			}
+
+
 			return $resultcreate;
 		} else {
 			setEventMessages($langs->trans("CEHLabelInf5"), $this->errors, 'errors');
 		}
+
 		//$resultvalidate = $this->validate($user, $notrigger);
 
 
@@ -1241,23 +1269,23 @@ class CliEnjoyHolidays extends CommonObject
 
 	public static function getDefaultPrice($country_id)
 	{
-		global $db,$conf;
+		global $db, $conf;
 
-		$sql = "SELECT amount FROM ".$db->prefix()."c_defaultpricecountry";
-		$sql .= " WHERE country = ".intval($country_id). ";";
+		$sql = "SELECT amount FROM " . $db->prefix() . "c_defaultpricecountry";
+		$sql .= " WHERE country = " . intval($country_id) . ";";
 
 		$result = $db->query($sql);
 
 		$amount = 0;
 
-		if($result){
+		if ($result) {
 
-			if ($db->num_rows($result)==1) {
+			if ($db->num_rows($result) == 1) {
 				$obj = $db->fetch_object($result);
 				$amount = $obj->amount;
-			}elseif ($db->num_rows($result)==0){
+			} elseif ($db->num_rows($result) == 0) {
 				$amount = $conf->global->CLIENJOYHOLIDAYS_DEFAULTAMOUNT;
-			}else{
+			} else {
 				exit;
 			}
 
