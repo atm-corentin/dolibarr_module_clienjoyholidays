@@ -111,7 +111,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 			),
 			// Set this to relative path of js file if module must load a js on all pages
 			'js' => array(
-				//   '/clienjoyholidays/js/clienjoyholidays.js.php',
+//				   '/clienjoyholidays/js/clienjoyholidays.js.php',
 			),
 			// Set here all hooks context managed by module. To find available hook context, make a "grep -r '>initHooks(' *" on source code. You can also set hook context to 'all'
 			'hooks' => array(
@@ -203,34 +203,20 @@ class modCliEnjoyHolidays extends DolibarrModules
 		// 'user'             to add a tab in user view
 
 		// Dictionaries
-		/* Example:
-		 $this->dictionaries=array(
-		 'langs'=>'clienjoyholidays@clienjoyholidays',
-		 // List of tables we want to see into dictonnary editor
-		 'tabname'=>array("table1", "table2", "table3"),
-		 // Label of tables
-		 'tablib'=>array("Table1", "Table2", "Table3"),
-		 // Request to select fields
-		 'tabsql'=>array('SELECT f.rowid as rowid, f.code, f.label, f.active FROM '.MAIN_DB_PREFIX.'table1 as f', 'SELECT f.rowid as rowid, f.code, f.label, f.active FROM '.MAIN_DB_PREFIX.'table2 as f', 'SELECT f.rowid as rowid, f.code, f.label, f.active FROM '.MAIN_DB_PREFIX.'table3 as f'),
-		 // Sort order
-		 'tabsqlsort'=>array("label ASC", "label ASC", "label ASC"),
-		 // List of fields (result of select to show dictionary)
-		 'tabfield'=>array("code,label", "code,label", "code,label"),
-		 // List of fields (list of fields to edit a record)
-		 'tabfieldvalue'=>array("code,label", "code,label", "code,label"),
-		 // List of fields (list of fields for insert)
-		 'tabfieldinsert'=>array("code,label", "code,label", "code,label"),
-		 // Name of columns with primary key (try to always name it 'rowid')
-		 'tabrowid'=>array("rowid", "rowid", "rowid"),
-		 // Condition to show each dictionary
-		 'tabcond'=>array(isModEnabled('clienjoyholidays'), isModEnabled('clienjoyholidays'), isModEnabled('clienjoyholidays')),
-		 // Tooltip for every fields of dictionaries: DO NOT PUT AN EMPTY ARRAY
-		 'tabhelp'=>array(array('code'=>$langs->trans('CodeTooltipHelp'), 'field2' => 'field2tooltip'), array('code'=>$langs->trans('CodeTooltipHelp'), 'field2' => 'field2tooltip'), ...),
-		 );
-		 */
-		/* BEGIN MODULEBUILDER DICTIONARIES */
-		$this->dictionaries = array();
-		/* END MODULEBUILDER DICTIONARIES */
+		$this->dictionaries=array(
+			'langs'=>'clienjoyholidays@clienjoyholidays',
+			'tabname'=>array("c_defaultpricecountry"),// List of tables we want to see into dictonnary editor
+			'tablib'=>array($langs->trans("DictionaryDefaultPriceCountry")),// Label of tables
+			'tabsql'=>array("SELECT r.rowid as rowid, r.amount as amount, r.active as active, c.label as country, c.code as country_code FROM ".MAIN_DB_PREFIX."c_defaultpricecountry as r JOIN ".MAIN_DB_PREFIX."c_country as c ON r.country = c.rowid"),
+			'tabsqlsort'=>array("country ASC"),// Sort order
+			'tabfield'=>array("country,amount"),// List of fields (result of select to show dictionary)
+			'tabfieldvalue'=>array("country,amount"), // List of fields (list of fields to edit a record)
+			'tabfieldinsert'=>array("country,amount"),// List of fields (list of fields for insert)
+			'tabrowid'=>array("rowid"),	// Name of columns with primary key (try to always name it 'rowid')
+			'tabcond'=>array($conf->clienjoyholidays->enabled),	// Condition to show each dictionary
+			'tabhelp' => array(array())
+		);
+
 
 		// Boxes/Widgets
 		// Add here list of php file(s) stored in clienjoyholidays/core/boxes that contains a class to show a widget.

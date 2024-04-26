@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 ## Unreleased
 
 
+## 1.5
+- NEW : Set default price for travel plan  *24/04/2024* - 1.5.0
+
+
 ## 1.4
 
 - NEW : Set box to show the 5 latest travel plans *19/04/2024* - 1.4.0
