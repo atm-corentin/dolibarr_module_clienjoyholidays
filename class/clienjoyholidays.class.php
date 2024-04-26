@@ -138,6 +138,9 @@ class CliEnjoyHolidays extends CommonObject
 	public $fk_user_modif;
 	public $import_key;
 	public $status;
+	/**
+	 * @var
+	 */
 	public $fk_destination_country;
 	public $start_date;
 	public $return_date;
@@ -1235,31 +1238,33 @@ class CliEnjoyHolidays extends CommonObject
 	}
 
 
-	public static function getDefaultPrice($country_id)
+	/**
+	 * @param int $country_id
+	 * @return int|string
+	 */
+	public static function getDefaultPrice(int $country_id): int|string
 	{
 		global $db,$conf;
 
 		$sql = "SELECT amount FROM ".$db->prefix()."c_defaultpricecountry";
 		$sql .= " WHERE country = ".intval($country_id). ";";
 
-		$result = $db->query($sql);
+		$resql = $db->query($sql);
 
 		$amount = 0;
 
-		if($result){
+		if($resql){
 
-			if ($db->num_rows($result)==1) {
-				$obj = $db->fetch_object($result);
+			if ($db->num_rows($resql)==1) {
+				$obj = $db->fetch_object($resql);
 				$amount = $obj->amount;
-			}elseif ($db->num_rows($result)==0){
-				$amount = $conf->global->CLIENJOYHOLIDAYS_DEFAULTAMOUNT;
-			}else{
-				exit;
+			}elseif ($db->num_rows($resql)==0){
+				$amount = getDolGlobalString('CLIENJOYHOLIDAYS_DEFAULTAMOUNT');
 			}
 
 
 		}
-		return json_encode($amount);
+		return $amount;
 
 	}
 }
