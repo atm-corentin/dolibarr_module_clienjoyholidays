@@ -79,7 +79,7 @@ CEHCreate = Create a travel plan
 
 
 #
-# List page
+CEHCreate = Créer une formule de voyage# List page
 #
 CliEnjoyHolidaysListTitle = Travel Form
 
@@ -88,3 +88,4 @@ CliEnjoyHolidaysListTitle = Travel Form
 #
 CEHLabelInf5 = The form is not empty
 ErrorInvalidRequest = empty request
+CEHCreate = Créer une formule de voyage

@@ -86,6 +86,10 @@ require_once DOL_DOCUMENT_ROOT . '/core/class/html.formprojet.class.php';
 dol_include_once('/clienjoyholidays/class/clienjoyholidays.class.php');
 dol_include_once('/clienjoyholidays/lib/clienjoyholidays_clienjoyholidays.lib.php');
 
+if (isModEnabled("propal")) {
+	require_once DOL_DOCUMENT_ROOT.'/comm/propal/class/propal.class.php';
+}
+
 // Load translation files required by the page
 $langs->loadLangs(array("clienjoyholidays@clienjoyholidays", "other"));
 

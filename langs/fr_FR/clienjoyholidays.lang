@@ -86,3 +86,5 @@ CliEnjoyHolidaysListTitle = Formule de voyage
 # Class
 #
 CEHLabelInf5 = Le formulaire n’est pas vidé
+ErrorInvalidRequest = la requête sql ne retourne rien
+CEHCreate = Créer une formule de voyage
