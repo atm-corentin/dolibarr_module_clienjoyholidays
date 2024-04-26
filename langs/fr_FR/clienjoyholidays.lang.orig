@@ -23,10 +23,6 @@ ModuleMyModuleName = CliEnjoyHolidays
 ModuleCliEnjoyHolidaysDesc = Le module clienjoyholidays permet de céer, modifier, supprimer, cloner, lister des formules de voyages
 # Module titre menu gauche 'ModuleMyModuleLeftMenuTitle'
 ModuleMyModuleLeftMenuTitle = Formule de voyage
-<<<<<<< HEAD
-# Titre du dictionnaire pour avoir un prix par defaut pour un pays 'DictionaryDefaultPriceCountry'
-DictionaryDefaultPriceCountry = Prix par défaut par pays
-=======
 # Module permission d'ajout 'CreateUpdateobjectsofCliEnjoyHolidays'
 CreateUpdateobjectsofCliEnjoyHolidays = Crééer/Modifier les formules de voyages
 # Module permission lire 'ReadobjectsofCliEnjoyHolidays'
@@ -34,7 +30,8 @@ ReadobjectsofCliEnjoyHolidays = Consulter les formules de voyages
 # Module permission de supprimer 'DeleteobjectsofCliEnjoyHolidays'
 DeleteobjectsofCliEnjoyHolidays =Supprimer les formule de voyages
 
->>>>>>> 043ca49f7eb12daa9d5db313a12e3560151b5388
+# Titre du dictionnaire pour avoir un prix par defaut pour un pays 'DictionaryDefaultPriceCountry'
+DictionaryDefaultPriceCountry = Prix par défaut par pays
 
 #
 # Admin page
@@ -89,4 +86,8 @@ CliEnjoyHolidaysListTitle = Formule de voyage
 # Class
 #
 CEHLabelInf5 = Le formulaire n’est pas vidé
+<<<<<<< HEAD
+CreateCliEnjoyHolidays = Créer une formule de voyage
+=======
 ErrorInvalidRequest = la requete ne retourne rien
+>>>>>>> dc528d9fba3446cff6bc9715b1fbdd9a91b3db01

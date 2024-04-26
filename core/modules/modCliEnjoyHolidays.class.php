@@ -117,6 +117,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 			'hooks' => array(
 				   'data' => array(
 				       'propalcard'
+
 				   ),
 				   'entity' => '0',
 			),
