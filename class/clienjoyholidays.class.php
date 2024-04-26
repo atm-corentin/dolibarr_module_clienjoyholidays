@@ -247,15 +247,11 @@ class CliEnjoyHolidays extends CommonObject
 					if ($db->num_rows($resql) == 1) {
 						$obj = $this->db->fetch_object($resql);
 						$this->amount = $obj->amount;
-						$this->date_creation = dol_now();
-						$this->updateCommon($user);
 					} else {
-						$this->amount = $conf->global->CLIENJOYHOLIDAYS_DEFAULTAMOUNT;
-						$this->date_creation = dol_now();
-						$this->updateCommon($user);
+						$this->amount = getDolGlobalInt('CLIENJOYHOLIDAYS_DEFAULTAMOUNT');
 					}
 				} else {
-					setEventMessages($langs->trans("ErrorInvalidRequest"), null, 'errors');
+					setEventMessages($langs->trans("SyntaxSqlError"), null, 'errors');
 				}
 
 			}
