@@ -90,6 +90,7 @@ class InterfaceCliEnjoyHolidaysTriggers extends DolibarrTriggers
 	 */
 	public function runTrigger($action, $object, User $user, Translate $langs, Conf $conf)
 	{
+
 		if (!isModEnabled('clienjoyholidays')) {
 			return 0; // If module is not enabled, we do nothing
 		}
@@ -108,7 +109,6 @@ class InterfaceCliEnjoyHolidaysTriggers extends DolibarrTriggers
 
 			return call_user_func($callback, $action, $object, $user, $langs, $conf);
 		}
-
 		// Or you can execute some code here
 		switch ($action) {
 			// Users
@@ -118,6 +118,11 @@ class InterfaceCliEnjoyHolidaysTriggers extends DolibarrTriggers
 			//case 'USER_ENABLEDISABLE':
 			//case 'USER_DELETE':
 
+//			case 'CLIENJOYHOLIDAYS_DELETE':
+//				$sql  = 'DELETE FROM '.MAIN_DB_PREFIX.'propal';
+//				$sql .= 'WHERE ref  ='. $object->ref ;
+//				$sql = 'DELETE FROM '.MAIN_DB_PREFIX.'clienjoyhoolidays_clienjoyholidays';
+//				$sql .= 'WHERE ref = '.$object->ref;
 			// Actions
 			//case 'ACTION_MODIFY':
 			//case 'ACTION_CREATE':
@@ -190,7 +195,22 @@ class InterfaceCliEnjoyHolidaysTriggers extends DolibarrTriggers
 			//case 'PROPAL_SENTBYMAIL':
 			//case 'PROPAL_CLOSE_SIGNED':
 			//case 'PROPAL_CLOSE_REFUSED':
-			//case 'PROPAL_DELETE':
+			case 'PROPAL_DELETE':
+				$object->fetchObjectLinked();
+
+				foreach ($object->linkedObjects['clienjoyholidays_clienjoyholidays'] as $clienjoy){
+
+
+					$clienjoyobject = new CliEnjoyHolidays($this->db);
+					$resfetch = $clienjoyobject->fetch($clienjoy->id);
+					if($resfetch > 0){
+
+						$clienjoyobject->delete($user,1);
+
+					}else{
+						setEventMessage('InvalidID', 'errors');
+					}
+				}
 			//case 'LINEPROPAL_INSERT':
 			//case 'LINEPROPAL_UPDATE':
 			//case 'LINEPROPAL_DELETE':

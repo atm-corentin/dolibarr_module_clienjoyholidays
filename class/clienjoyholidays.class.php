@@ -35,7 +35,7 @@ class CliEnjoyHolidays extends CommonObject
 {
 	/**
 	 * @var string ID of module.
-//	 */
+	 * //     */
 //	public $module = 'clienjoyholidays';
 
 	/**
@@ -235,9 +235,11 @@ class CliEnjoyHolidays extends CommonObject
 	{
 		global $langs, $conf, $db, $error;
 
-		$propalId = GETPOSTINT('propalid');
+		$origin = GETPOST('origin', 'aZ09');
+		$originid = GETPOSTINT('originid');
 
-		$this->element
+
+		$this->element;
 
 		if (strlen($this->label) >= 5) {
 
@@ -266,10 +268,9 @@ class CliEnjoyHolidays extends CommonObject
 			}
 
 			$resultcreate = $this->createCommon($user, $notrigger);
-			if ($resultcreate > 0){
-				$this->add_object_linked('propal',$this->fk_ticket);
+			if ($resultcreate > 0) {
+				$this->add_object_linked($origin, $originid);
 			}
-
 
 
 			return $resultcreate;
@@ -549,6 +550,22 @@ class CliEnjoyHolidays extends CommonObject
 	 */
 	public function delete(User $user, $notrigger = false)
 	{
+
+		global $langs;
+		$this->fetchObjectLinked();
+
+		foreach ($this->linkedObjects['propal'] as $propal) {
+			$objectpropal = new Propal($this->db);
+			$resfetch = $objectpropal->fetch($propal->id);
+			if ($resfetch > 0) {
+					$objectpropal->delete($user, $notrigger);
+
+			} else {
+				setEventMessage($langs->trans("InvalidID"), 'errors');
+			}
+
+		}
+
 		return $this->deleteCommon($user, $notrigger);
 		//return $this->deleteCommon($user, $notrigger, 1);
 	}

@@ -88,3 +88,10 @@ CliEnjoyHolidaysListTitle = Formule de voyage
 CEHLabelInf5 = Le formulaire n’est pas vidé
 ErrorInvalidRequest = la requête sql ne retourne rien
 CEHCreate = Créer une formule de voyage
+DeleteSucess =
+
+
+#
+#tpl
+#
+CEHTypeObject = Formule de voyage

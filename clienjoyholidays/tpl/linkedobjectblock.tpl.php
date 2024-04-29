@@ -61,7 +61,7 @@ foreach ($linkedObjectBlock as $key => $objectlink) {
 		$trclass .= ' liste_sub_total';
 	}
 	echo '<tr class="'.$trclass.'" >';
-	echo '<td class="linkedcol-element tdoverflowmax100">'.$langs->trans("Clienj");
+	echo '<td class="linkedcol-element tdoverflowmax100">'.$langs->trans("CEHTypeObject");
 	if (!empty($showImportButton) && $conf->global->MAIN_ENABLE_IMPORT_LINKED_OBJECT_LINES) {
 		print '<a class="objectlinked_importbtn" href="'.$objectlink->getNomUrl(0, '', 0, 1).'&amp;action=selectlines" data-element="'.$objectlink->element.'" data-id="'.$objectlink->id.'"  > <i class="fa fa-indent"></i> </a';
 	}
@@ -79,8 +79,8 @@ foreach ($linkedObjectBlock as $key => $objectlink) {
 	echo '<td class="linkedcol-date center">'.dol_print_date($objectlink->date_creation, 'day').'</td>';
 	echo '<td class="linkedcol-amount right">';
 	if ($user->hasRight('propal', 'lire')) {
-		$total = $total + $objectlink->total_ht;
-		echo price($objectlink->total_ht);
+		$total = $total + $objectlink->amount;
+		echo price($objectlink->amount);
 	}
 	echo '</td>';
 	echo '<td class="linkedcol-statut right">'.$objectlink->getLibStatut(3).'</td>';
