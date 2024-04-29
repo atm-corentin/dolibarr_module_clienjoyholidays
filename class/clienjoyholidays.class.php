@@ -1255,10 +1255,10 @@ class CliEnjoyHolidays extends CommonObject
 
 		if($resql){
 
-			if ($db->num_rows($resql)==1) {
+			if ($db->num_rows($resql)>0) {
 				$obj = $db->fetch_object($resql);
 				$amount = $obj->amount;
-			}elseif ($db->num_rows($resql)==0){
+			}else{
 				$amount = getDolGlobalString('CLIENJOYHOLIDAYS_DEFAULTAMOUNT');
 			}
 
