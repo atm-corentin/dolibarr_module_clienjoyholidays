@@ -1239,13 +1239,13 @@ class CliEnjoyHolidays extends CommonObject
 
 
 	/**
+	 * Function which check if a given country as already a price set
 	 * @param int $country_id
-	 * @return int|string
+	 * @return string
 	 */
-	public static function getDefaultPrice(int $country_id): int|string
+	public static function getDefaultPrice(int $country_id): string
 	{
 		global $db,$conf;
-
 		$sql = "SELECT amount FROM ".$db->prefix()."c_defaultpricecountry";
 		$sql .= " WHERE country = ".intval($country_id). ";";
 
