@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 ## Unreleased
 
 ## 1.7
+- NEW : Deleting a commercial proposal deletes the linked travel package and vice versa *30/04/2024* - 1.7.1
 - NEW : Add a button to the commercial proposal form that allows you to create a travel plans *25/04/2024* - 1.7.0
 
 ## 1.6
