@@ -474,7 +474,10 @@ class modCliEnjoyHolidays extends DolibarrModules
 		// Create extrafields during init
 		include_once DOL_DOCUMENT_ROOT.'/core/class/extrafields.class.php';
 		$extrafields = new ExtraFields($this->db);
-		$result1=$extrafields->addExtraField('clienjoyholidays_specificmention', $langs->trans('Specific_Mention'), 'varchar', 100,  3, 'propal',   0, 0, '', '', 1, '', 0, 0, '', '', 'clienjoyholidays@clienjoyholidays', 'isModEnabled("clienjoyholidays")');
+
+		$param = array ( 'options' => array ( 'CliEnjoyHolidays:clienjoyholidays/class/clienjoyholidays.class.php' => NULL, ), );
+		$extrafields = new ExtraFields($this->db);
+		$result1=$extrafields->addExtraField('clienjoyholidays_specificmention', $langs->trans('Specific_Mention'), 'varchar', 100,  60, 'propal',   0, 0, '', '', 1, '', 0, 0, '', '', 'clienjoyholidays@clienjoyholidays', 'isModEnabled("clienjoyholidays")');
 		$result5=$extrafields->addExtraField('clienjoyholidays_responsible', $langs->trans(''), 'link',    1, 101, 'user',         0, 0, '', '', 1, '', 0, 0, '', '', 'clienjoyholidays@clienjoyholidays', 'isModEnabled("clienjoyholidays")');
 
 		// Permissions
