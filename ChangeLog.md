@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## 1.8
+- NEW : Add extrafield on commercial proposals *30/04/2024* - 1.8.0
+
 ## 1.7
 - NEW : Add a button to the commercial proposal form that allows you to create and delete a travel plans *25/04/2024* - 1.7.0
 
