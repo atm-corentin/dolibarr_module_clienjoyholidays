@@ -242,26 +242,6 @@ class CliEnjoyHolidays extends CommonObject
 
 		if (strlen($this->label) >= 5) {
 
-
-			if (empty($this->amount)) {
-				$sql = 'SELECT amount';
-				$sql .= ' FROM ' . MAIN_DB_PREFIX . 'c_defaultpricecountry';
-				$sql .= ' WHERE country = ' . $this->fk_destination_country . ' AND active= 1';
-				$resql = $this->db->query($sql);
-				if ($resql) {
-
-					if ($db->num_rows($resql) == 1) {
-						$obj = $this->db->fetch_object($resql);
-						$this->amount = $obj->amount;
-					} else {
-						$this->amount = $conf->global->CLIENJOYHOLIDAYS_DEFAULTAMOUNT;
-					}
-				} else {
-					setEventMessages($langs->trans("ErrorInvalidRequest"), null, 'errors');
-				}
-
-			}
-
 			$resultcreate = $this->createCommon($user, $notrigger);
 			if ($resultcreate > 0) {
 				$this->add_object_linked($origin, $originid);
