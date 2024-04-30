@@ -11,7 +11,7 @@ if (!$res) die("Include of master fails");
 require_once __DIR__ . '/../class/clienjoyholidays.class.php';
 
 $action = GETPOST('action','aZ09');
-$data = GETPOSTINT('data',1);
+$data = GETPOSTINT('data');
 
 switch ($action) {
 	case 'getdefaultPrice':
