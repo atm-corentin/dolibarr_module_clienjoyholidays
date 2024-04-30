@@ -35,6 +35,8 @@ DeleteobjectsofCliEnjoyHolidays =Supprimer les formule de voyages
 #
 Specific_Mention = Mention spécifique
 Responsible= Responsable
+
+
 #
 # Titre du dictionnaire pour avoir un prix par defaut pour un pays 'DictionaryDefaultPriceCountry'
 #
