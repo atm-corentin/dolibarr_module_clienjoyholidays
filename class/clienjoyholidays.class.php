@@ -553,12 +553,13 @@ class CliEnjoyHolidays extends CommonObject
 
 		global $langs;
 		$this->fetchObjectLinked();
-
-		foreach ($this->linkedObjects['propal'] as $propal) {
+		foreach ($this->linkedObjectsIds['propal'] as $id) {
 			$objectpropal = new Propal($this->db);
-			$resfetch = $objectpropal->fetch($propal->id);
+			$resfetch = $objectpropal->fetch($id);
+
 			if ($resfetch > 0) {
 					$objectpropal->delete($user, $notrigger);
+
 
 			} else {
 				setEventMessage($langs->trans("InvalidID"), 'errors');

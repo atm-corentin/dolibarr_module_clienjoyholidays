@@ -198,11 +198,12 @@ class InterfaceCliEnjoyHolidaysTriggers extends DolibarrTriggers
 			case 'PROPAL_DELETE':
 				$object->fetchObjectLinked();
 
-				foreach ($object->linkedObjects['clienjoyholidays_clienjoyholidays'] as $clienjoy){
+				foreach ($object->linkedObjectsIds['clienjoyholidays_clienjoyholidays'] as $id){
 
 
 					$clienjoyobject = new CliEnjoyHolidays($this->db);
-					$resfetch = $clienjoyobject->fetch($clienjoy->id);
+					$resfetch = $clienjoyobject->fetch($id);
+
 					if($resfetch > 0){
 
 						$clienjoyobject->delete($user,1);
