@@ -5,10 +5,11 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## 1.6
+- FIX : Print default price when you create a travel plan - *25/04/2024* - 1.6.0
 
 ## 1.5
 - NEW : Set default price for travel plan  *24/04/2024* - 1.5.0
-
 
 ## 1.4
 

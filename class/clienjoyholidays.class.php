@@ -138,6 +138,9 @@ class CliEnjoyHolidays extends CommonObject
 	public $fk_user_modif;
 	public $import_key;
 	public $status;
+	/**
+	 * @var
+	 */
 	public $fk_destination_country;
 	public $start_date;
 	public $return_date;
@@ -1232,6 +1235,38 @@ class CliEnjoyHolidays extends CommonObject
 		dol_syslog(__METHOD__ . " end", LOG_INFO);
 
 		return $error;
+	}
+
+
+	/**
+	 * Function which check if a given country as already a price set and return a price for a country.
+	 * If is not set then it will set the default price set in the dictionary
+	 * @param int $country_id
+	 * @return string
+	 */
+	public static function getDefaultPrice(int $country_id): string
+	{
+		global $db,$conf;
+		$sql = "SELECT amount FROM ".$db->prefix()."c_defaultpricecountry";
+		$sql .= " WHERE country = ".intval($country_id). ";";
+
+		$resql = $db->query($sql);
+
+		$amount = 0;
+
+		if($resql){
+
+			if ($db->num_rows($resql)>0) {
+				$obj = $db->fetch_object($resql);
+				$amount = $obj->amount;
+			}else{
+				$amount = getDolGlobalString('CLIENJOYHOLIDAYS_DEFAULTAMOUNT');
+			}
+
+
+		}
+		return $amount;
+
 	}
 }
 
