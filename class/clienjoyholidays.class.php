@@ -1265,7 +1265,8 @@ class CliEnjoyHolidays extends CommonObject
 
 
 	/**
-	 * Function which check if a given country as already a price set and return a price for a country
+	 * Function which check if a given country as already a price set and return a price for a country.
+	 * If is not set then it will set the default price set in the dictionary
 	 * @param int $country_id
 	 * @return string
 	 */
