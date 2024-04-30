@@ -204,7 +204,6 @@ class CliEnjoyHolidays extends CommonObject
 			$this->fields['myfield']['noteditable'] = 0;
 		}*/
 
-
 		// Unset fields that are disabled
 		foreach ($this->fields as $key => $val) {
 			if (isset($val['enabled']) && empty($val['enabled'])) {
@@ -223,6 +222,7 @@ class CliEnjoyHolidays extends CommonObject
 			}
 		}
 	}
+
 	/**
 	 * Create object into database
 	 *
@@ -232,42 +232,16 @@ class CliEnjoyHolidays extends CommonObject
 	 */
 	public function create(User $user, $notrigger = false)
 	{
-		global $langs, $conf, $db, $error;
-
-		$origin = GETPOST('origin', 'aZ09');
-		$originid = GETPOSTINT('originid');
-
-
-		$this->element;
+		global $langs, $conf, $error;
 
 		if (strlen($this->label) >= 5) {
 
-
-			if (empty($this->amount)) {
-				$sql = 'SELECT amount';
-				$sql .= ' FROM ' . MAIN_DB_PREFIX . 'c_defaultpricecountry';
-				$sql .= ' WHERE country = ' . $this->fk_destination_country . ' AND active= 1';
-				$resql = $this->db->query($sql);
-				if ($resql) {
-
-					if ($db->num_rows($resql) == 1) {
-						$obj = $this->db->fetch_object($resql);
-						$this->amount = $obj->amount;
-					} else {
-						$this->amount = $conf->global->CLIENJOYHOLIDAYS_DEFAULTAMOUNT;
-					}
-				} else {
-					setEventMessages($langs->trans("ErrorInvalidRequest"), null, 'errors');
-				}
-
-			}
-
 			$resultcreate = $this->createCommon($user, $notrigger);
 			if ($resultcreate > 0) {
+				$origin = GETPOST('origin', 'alphanohtml');
+				$originid = GETPOSTINT('originid');
 				$this->add_object_linked($origin, $originid);
 			}
-
-
 			return $resultcreate;
 		} else {
 			setEventMessages($langs->trans("CEHLabelInf5"), $this->errors, 'errors');
@@ -277,6 +251,7 @@ class CliEnjoyHolidays extends CommonObject
 
 
 	}
+
 	/**
 	 * Clone an object into another one
 	 *
@@ -546,19 +521,20 @@ class CliEnjoyHolidays extends CommonObject
 	{
 
 		global $langs;
-		$this->fetchObjectLinked();
-		foreach ($this->linkedObjectsIds['propal'] as $id) {
-			$objectpropal = new Propal($this->db);
-			$resfetch = $objectpropal->fetch($id);
+		$res = $this->fetchObjectLinked();
+		if ($res < 0) {
+			setEventMessage($langs->trans("EmptyObjectLinked"), 'errors');
+		} else {
+			foreach ($this->linkedObjectsIds['propal'] as $id) {
+				$objectpropal = new Propal($this->db);
+				$res = $objectpropal->fetch($id);
 
-			if ($resfetch > 0) {
-				$objectpropal->delete($user, $notrigger);
-
-
-			} else {
-				setEventMessage($langs->trans("InvalidID"), 'errors');
+				if ($res > 0) {
+					$objectpropal->delete($user, $notrigger);
+				} else {
+					setEventMessage($langs->trans("InvalidID"), 'errors');
+				}
 			}
-
 		}
 
 		return $this->deleteCommon($user, $notrigger);
@@ -1272,20 +1248,20 @@ class CliEnjoyHolidays extends CommonObject
 	 */
 	public static function getDefaultPrice(int $country_id): string
 	{
-		global $db,$conf;
-		$sql = "SELECT amount FROM ".$db->prefix()."c_defaultpricecountry";
-		$sql .= " WHERE country = ".intval($country_id). ";";
+		global $db, $conf;
+		$sql = "SELECT amount FROM " . $db->prefix() . "c_defaultpricecountry";
+		$sql .= " WHERE country = " . intval($country_id) . ";";
 
 		$resql = $db->query($sql);
 
 		$amount = 0;
 
-		if($resql){
+		if ($resql) {
 
-			if ($db->num_rows($resql)>0) {
+			if ($db->num_rows($resql) > 0) {
 				$obj = $db->fetch_object($resql);
 				$amount = $obj->amount;
-			}else{
+			} else {
 				$amount = getDolGlobalString('CLIENJOYHOLIDAYS_DEFAULTAMOUNT');
 			}
 

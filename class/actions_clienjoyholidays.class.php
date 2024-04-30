@@ -64,15 +64,9 @@ class ActionsCliEnjoyHolidays
 	function addMoreActionsButtons($parameters, &$object, &$action, $hookmanager)
 	{
 		global $langs;
-
-
 		if (in_array('propalcard', explode(':', $parameters['context']))) {
-			print '<a class="butAction" href="' . dol_buildpath('/clienjoyholidays/clienjoyholidays_card.php', 1).'?action=create&origin=' . $object->element . '&originid=' . $object->id . '&socid=' . $object->socid . '">' . $langs->trans("CEHCreate") .  '</a>';
-
-
+			print dolGetButtonAction('',  $langs->trans("CEHCreate"), 'default',  dol_buildpath('/clienjoyholidays/clienjoyholidays_card.php', 1).'?action=create&origin=' . $object->element . '&originid=' . $object->id . '&socid=' . $object->socid, '',);
 		}
 
 	}
-
-
 }

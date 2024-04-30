@@ -106,13 +106,9 @@ $backtopage = GETPOST('backtopage', 'alpha');                    // if not set, 
 $backtopageforcancel = GETPOST('backtopageforcancel', 'alpha');    // if not set, $backtopage will be used
 $backtopagejsfields = GETPOST('backtopagejsfields', 'alpha');
 $dol_openinpopup = GETPOST('dol_openinpopup', 'aZ09');
-$origin = GETPOST('origin',1);
-$originid = GETPOSTINT('originid',1);
-//echo "<pre>";
-//var_dump($origin);
-//var_dump($originid);
-//echo "</pre>";
-//exit;
+$origin = GETPOST('origin','alphanohtml');
+$originid = GETPOSTINT('originid');
+
 
 
 
@@ -642,9 +638,7 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 			$buttonId = 'action-delete-no-ajax';
 
 		}
-		if ($reshook > 0) {
-			print '</div>' . "\n";
-		}
+
 	}
 
 
