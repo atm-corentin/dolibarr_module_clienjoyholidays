@@ -198,7 +198,7 @@ class InterfaceCliEnjoyHolidaysTriggers extends DolibarrTriggers
 			case 'PROPAL_DELETE':
 				$object->fetchObjectLinked();
 				if (empty($object->linkedObjectsIds)) {
-					return -1;
+					setEventMessage($langs->trans("EmptyObjectLinked"), 'errors');
 				} else {
 					foreach ($object->linkedObjectsIds['clienjoyholidays_clienjoyholidays'] as $id) {
 						$clienjoyobject = new CliEnjoyHolidays($this->db);
@@ -206,7 +206,7 @@ class InterfaceCliEnjoyHolidaysTriggers extends DolibarrTriggers
 						if ($resfetch > 0) {
 							$clienjoyobject->delete($user, 1);
 						} else {
-							setEventMessage('InvalidID', 'errors');
+							return -1;
 						}
 					}
 				}
