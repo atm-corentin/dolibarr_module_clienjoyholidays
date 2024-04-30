@@ -30,7 +30,7 @@
  * - The class name must be InterfaceMytrigger
  */
 
-require_once DOL_DOCUMENT_ROOT.'/core/triggers/dolibarrtriggers.class.php';
+require_once DOL_DOCUMENT_ROOT . '/core/triggers/dolibarrtriggers.class.php';
 
 
 /**
@@ -81,12 +81,12 @@ class InterfaceCliEnjoyHolidaysTriggers extends DolibarrTriggers
 	 * All functions "runTrigger" are triggered if file
 	 * is inside directory core/triggers
 	 *
-	 * @param string 		$action 	Event action code
-	 * @param CommonObject 	$object 	Object
-	 * @param User 			$user 		Object user
-	 * @param Translate 	$langs 		Object langs
-	 * @param Conf 			$conf 		Object conf
-	 * @return int              		Return integer <0 if KO, 0 if no triggered ran, >0 if OK
+	 * @param string $action Event action code
+	 * @param CommonObject $object Object
+	 * @param User $user Object user
+	 * @param Translate $langs Object langs
+	 * @param Conf $conf Object conf
+	 * @return int                    Return integer <0 if KO, 0 if no triggered ran, >0 if OK
 	 */
 	public function runTrigger($action, $object, User $user, Translate $langs, Conf $conf)
 	{
@@ -104,7 +104,7 @@ class InterfaceCliEnjoyHolidaysTriggers extends DolibarrTriggers
 		$callback = array($this, $methodName);
 		if (is_callable($callback)) {
 			dol_syslog(
-				"Trigger '".$this->name."' for action '$action' launched by ".__FILE__.". id=".$object->id
+				"Trigger '" . $this->name . "' for action '$action' launched by " . __FILE__ . ". id=" . $object->id
 			);
 
 			return call_user_func($callback, $action, $object, $user, $langs, $conf);
@@ -197,19 +197,17 @@ class InterfaceCliEnjoyHolidaysTriggers extends DolibarrTriggers
 			//case 'PROPAL_CLOSE_REFUSED':
 			case 'PROPAL_DELETE':
 				$object->fetchObjectLinked();
-
-				foreach ($object->linkedObjectsIds['clienjoyholidays_clienjoyholidays'] as $id){
-
-
-					$clienjoyobject = new CliEnjoyHolidays($this->db);
-					$resfetch = $clienjoyobject->fetch($id);
-
-					if($resfetch > 0){
-
-						$clienjoyobject->delete($user,1);
-
-					}else{
-						setEventMessage('InvalidID', 'errors');
+				if (empty($object->linkedObjectsIds)) {
+					return -1;
+				} else {
+					foreach ($object->linkedObjectsIds['clienjoyholidays_clienjoyholidays'] as $id) {
+						$clienjoyobject = new CliEnjoyHolidays($this->db);
+						$resfetch = $clienjoyobject->fetch($id);
+						if ($resfetch > 0) {
+							$clienjoyobject->delete($user, 1);
+						} else {
+							setEventMessage('InvalidID', 'errors');
+						}
 					}
 				}
 			//case 'LINEPROPAL_INSERT':
@@ -335,7 +333,7 @@ class InterfaceCliEnjoyHolidaysTriggers extends DolibarrTriggers
 			// and more...
 
 			default:
-				dol_syslog("Trigger '".$this->name."' for action '".$action."' launched by ".__FILE__.". id=".$object->id);
+				dol_syslog("Trigger '" . $this->name . "' for action '" . $action . "' launched by " . __FILE__ . ". id=" . $object->id);
 				break;
 		}
 
