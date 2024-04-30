@@ -20,7 +20,7 @@
 # Module label 'ModuleMyModuleName'
 ModuleMyModuleName = CliEnjoyHolidays
 # Module description 'ModuleMyModuleDesc'
-ModuleMyModuleDesc = Le module clienjoyholidays permet de céer, modifier, supprimer, cloner, lister des formules de voyages
+ModuleCliEnjoyHolidaysDesc = Le module clienjoyholidays permet de céer, modifier, supprimer, cloner, lister des formules de voyages
 # Module titre menu gauche 'ModuleMyModuleLeftMenuTitle'
 ModuleMyModuleLeftMenuTitle = Formule de voyage
 # Module permission d'ajout 'CreateUpdateobjectsofCliEnjoyHolidays'
@@ -30,20 +30,35 @@ ReadobjectsofCliEnjoyHolidays = Consulter les formules de voyages
 # Module permission de supprimer 'DeleteobjectsofCliEnjoyHolidays'
 DeleteobjectsofCliEnjoyHolidays =Supprimer les formule de voyages
 
+
+#
 # Titre du dictionnaire pour avoir un prix par defaut pour un pays 'DictionaryDefaultPriceCountry'
+#
 DictionaryDefaultPriceCountry = Prix par défaut par pays
+
 
 #
 # Admin page
 #
 
+
+#
 # Titre de la page paramètre 'CliEnjoyHolidaysSetup'
+#
 CliEnjoyHolidaysSetup = Paramètres Formule de voyage
 Settings = Paramètre
 CliEnjoyHolidaysSetupPage = Page de configuration
+
+
+#
 # Titre de la conf 'CLIENJOYHOLIDAYS_DEFAULTAMOUNT'
+#
 CLIENJOYHOLIDAYS_DEFAULTAMOUNT = Montant par défaut
+
+
+#
 # Definit un motant par défaut pour une forule de voyage 'CLIENJOYHOLIDAYS_DEFAULTAMOUNTTooltip'
+#
 CLIENJOYHOLIDAYS_DEFAULTAMOUNTTooltip= Saisir le montant par défaut pour une formule de voyage
 
 
@@ -86,12 +101,4 @@ CliEnjoyHolidaysListTitle = Formule de voyage
 # Class
 #
 CEHLabelInf5 = Le formulaire n’est pas vidé
-ErrorInvalidRequest = la requête sql ne retourne rien
-CEHCreate = Créer une formule de voyage
-DeleteSucess =
-
-
-#
-#tpl
-#
-CEHTypeObject = Formule de voyage
+SyntaxSqlError = Erreur de syntaxe sur le requete sql

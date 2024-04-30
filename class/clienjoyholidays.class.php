@@ -233,20 +233,14 @@ class CliEnjoyHolidays extends CommonObject
 	 */
 	public function create(User $user, $notrigger = false)
 	{
-		global $langs, $conf, $db, $error;
-
-		$origin = GETPOST('origin', 'aZ09');
-		$originid = GETPOSTINT('originid');
-
-
-		$this->element;
+		global $langs, $conf, $db;
 
 		if (strlen($this->label) >= 5) {
 
 
 			if (empty($this->amount)) {
 				$sql = 'SELECT amount';
-				$sql .= ' FROM ' . MAIN_DB_PREFIX . 'c_defaultpricecountry';
+				$sql .= ' FROM '.MAIN_DB_PREFIX.'c_defaultpricecountry';
 				$sql .= ' WHERE country = ' . $this->fk_destination_country . ' AND active= 1';
 				$resql = $this->db->query($sql);
 				if ($resql) {
@@ -254,30 +248,19 @@ class CliEnjoyHolidays extends CommonObject
 					if ($db->num_rows($resql) == 1) {
 						$obj = $this->db->fetch_object($resql);
 						$this->amount = $obj->amount;
-						$this->date_creation = dol_now();
-						$this->updateCommon($user);
 					} else {
-						$this->amount = $conf->global->CLIENJOYHOLIDAYS_DEFAULTAMOUNT;
-						$this->date_creation = dol_now();
-						$this->updateCommon($user);
+						$this->amount = getDolGlobalInt('CLIENJOYHOLIDAYS_DEFAULTAMOUNT');
 					}
 				} else {
-					setEventMessages($langs->trans("ErrorInvalidRequest"), null, 'errors');
+					setEventMessages($langs->trans("SyntaxSqlError"), null, 'errors');
 				}
 
 			}
-
 			$resultcreate = $this->createCommon($user, $notrigger);
-			if ($resultcreate > 0) {
-				$this->add_object_linked($origin, $originid);
-			}
-
-
 			return $resultcreate;
 		} else {
 			setEventMessages($langs->trans("CEHLabelInf5"), $this->errors, 'errors');
 		}
-
 		//$resultvalidate = $this->validate($user, $notrigger);
 
 
@@ -558,7 +541,7 @@ class CliEnjoyHolidays extends CommonObject
 			$resfetch = $objectpropal->fetch($id);
 
 			if ($resfetch > 0) {
-					$objectpropal->delete($user, $notrigger);
+				$objectpropal->delete($user, $notrigger);
 
 
 			} else {
@@ -1270,31 +1253,33 @@ class CliEnjoyHolidays extends CommonObject
 	}
 
 
-	public static function getDefaultPrice($country_id)
+	/**
+	 * Function which check if a given country as already a price set and return a price for a country
+	 * @param int $country_id
+	 * @return string
+	 */
+	public static function getDefaultPrice(int $country_id): string
 	{
-		global $db, $conf;
+		global $db,$conf;
+		$sql = "SELECT amount FROM ".$db->prefix()."c_defaultpricecountry";
+		$sql .= " WHERE country = ".intval($country_id). ";";
 
-		$sql = "SELECT amount FROM " . $db->prefix() . "c_defaultpricecountry";
-		$sql .= " WHERE country = " . intval($country_id) . ";";
-
-		$result = $db->query($sql);
+		$resql = $db->query($sql);
 
 		$amount = 0;
 
-		if ($result) {
+		if($resql){
 
-			if ($db->num_rows($result) == 1) {
-				$obj = $db->fetch_object($result);
+			if ($db->num_rows($resql)>0) {
+				$obj = $db->fetch_object($resql);
 				$amount = $obj->amount;
-			} elseif ($db->num_rows($result) == 0) {
-				$amount = $conf->global->CLIENJOYHOLIDAYS_DEFAULTAMOUNT;
-			} else {
-				exit;
+			}else{
+				$amount = getDolGlobalString('CLIENJOYHOLIDAYS_DEFAULTAMOUNT');
 			}
 
 
 		}
-		return json_encode($amount);
+		return $amount;
 
 	}
 }

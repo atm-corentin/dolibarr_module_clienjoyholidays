@@ -345,14 +345,14 @@ if ($action == 'create') {
 
 	<script>
 		$('#fk_destination_country').change(function () {
-			var rowid = $(this).val();
+			var countryIdSelected = $(this).val();
 			if (!$('#amount').val() === true) {
 				$.ajax({
 					url: "<?= dol_buildpath('/clienjoyholidays/scripts/interface.php', 1); ?>",
 					dataType: "json",
 					data: {
-						get: 'defaultPrice',
-						data: rowid
+						action: 'getdefaultPrice',
+						data: countryIdSelected
 					},
 					success: function (data) {
 						$('#amount').val(data);

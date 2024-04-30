@@ -30,7 +30,10 @@ ReadobjectsofCliEnjoyHolidays = 'Consult the travel plans'
 # Module permission delete 'DeleteobjectsofChiffrage'
 DeleteobjectsofChiffrage = 'Delete travel plan'
 
+
+#
 # Dictionary title to have a default price for a country 'DictionaryDefaultPriceCountry'
+#
 DictionaryDefaultPriceCountry = Default price by country
 
 
@@ -38,13 +41,24 @@ DictionaryDefaultPriceCountry = Default price by country
 # Admin page
 #
 
+
+#
 # Title of the parameter page 'CliEnjoyHolidaysSetup'
+#
 CliEnjoyHolidaysSetup = Travel Plan Settings
 Settings = Parameter
 CliEnjoyHolidaysSetupPage = Setup page
+
+
+#
 # Conf title 'CLIENJOYHOLIDAYS_DEFAULTAMOUNT'
+#
 CLIENJOYHOLIDAYS_DEFAULTAMOUNT = Default amount
+
+
+#
 # Defines a default wording for a travel formula 'CLIENJOYHOLIDAYS_DEFAULTAMOUNTTooltip'
+#
 CLIENJOYHOLIDAYS_DEFAULTAMOUNTTooltip= Enter the default amount for a travel package
 
 
@@ -79,7 +93,7 @@ CEHCreate = Create a travel plan
 
 
 #
-CEHCreate = Créer une formule de voyage# List page
+# List page
 #
 CliEnjoyHolidaysListTitle = Travel Form
 
@@ -87,5 +101,4 @@ CliEnjoyHolidaysListTitle = Travel Form
 # Class
 #
 CEHLabelInf5 = The form is not empty
-ErrorInvalidRequest = empty request
-CEHCreate = Créer une formule de voyage
+SyntaxSqlError = Syntax error on sql query

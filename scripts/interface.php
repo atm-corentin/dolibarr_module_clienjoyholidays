@@ -10,12 +10,14 @@ if (!$res) die("Include of master fails");
 
 require_once __DIR__ . '/../class/clienjoyholidays.class.php';
 
-$get = GETPOST('get');
+$action = GETPOST('action','aZ09');
 $data = GETPOSTINT('data');
 
-switch ($get) {
-	case 'defaultPrice':
-		echo CliEnjoyHolidays::getDefaultPrice($data);
+switch ($action) {
+	case 'getdefaultPrice':
+		$amount =  CliEnjoyHolidays::getDefaultPrice($data);
+		echo json_encode($amount);
+
 		break;
 	default:
 		break;
