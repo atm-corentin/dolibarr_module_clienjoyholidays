@@ -10,7 +10,7 @@ if (!$res) die("Include of master fails");
 
 require_once __DIR__ . '/../class/clienjoyholidays.class.php';
 
-$action = GETPOST('action','aZ09');
+$action = GETPOST('action','alphanohtml');
 $data = GETPOSTINT('data');
 
 switch ($action) {
