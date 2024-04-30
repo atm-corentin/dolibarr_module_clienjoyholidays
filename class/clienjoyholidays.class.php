@@ -1239,7 +1239,7 @@ class CliEnjoyHolidays extends CommonObject
 
 
 	/**
-	 * Function which check if a given country as already a price set and return un price for a travel plan
+	 * Function which check if a given country as already a price set and return a price for a country
 	 * @param int $country_id
 	 * @return string
 	 */
