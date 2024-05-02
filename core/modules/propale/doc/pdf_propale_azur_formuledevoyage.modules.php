@@ -32,6 +32,7 @@
  */
 
 require_once DOL_DOCUMENT_ROOT.'/core/modules/propale/modules_propale.php';
+require_once DOL_DOCUMENT_ROOT.'/core/class/extrafields.class.php';
 require_once DOL_DOCUMENT_ROOT.'/product/class/product.class.php';
 require_once DOL_DOCUMENT_ROOT.'/core/lib/company.lib.php';
 require_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
@@ -414,10 +415,10 @@ class pdf_propale_azur_formuledevoyage extends ModelePDFPropales
 					}
 				}
 				// Extrafields in note
-				$extranote = $this->getExtrafieldsInHtml($object, $outputlangs);
-				if (!empty($extranote)) {
-					$notetoshow = dol_concatdesc($notetoshow, $extranote);
-				}
+//				$extranote = $this->getExtrafieldsInHtml($object, $outputlangs);
+//				if (!empty($extranote)) {
+//					$notetoshow = dol_concatdesc($notetoshow, $extranote);
+//				}
 				if (getDolGlobalString('MAIN_ADD_CREATOR_IN_NOTE') && $object->user_author_id > 0) {
 					$tmpuser = new User($this->db);
 					$tmpuser->fetch($object->user_author_id);
@@ -1581,6 +1582,9 @@ class pdf_propale_azur_formuledevoyage extends ModelePDFPropales
 			$pdf->SetTextColor(0, 0, 60);
 			$pdf->MultiCell(100, 3, $outputlangs->transnoentities("CustomerCode")." : ".$outputlangs->transnoentities($object->thirdparty->code_client), '', 'R');
 		}
+		$extranote = $this->getExtrafieldsInHtml($object, $outputlangs);
+		$pdf->writeHTMLCell(0, 3, $posx +66 , $posy + 4, dol_htmlentitiesbr($extranote), 0, 0);
+
 
 		// Get contact
 		if (getDolGlobalString('DOC_SHOW_FIRST_SALES_REP')) {
@@ -1703,12 +1707,14 @@ class pdf_propale_azur_formuledevoyage extends ModelePDFPropales
 			$pdf->SetFont('', 'B', $default_font_size);
 			$pdf->MultiCell($widthrecbox, 4, $carac_client_name, 0, $ltrdirection);
 
+
 			$posy = $pdf->getY();
 
 			// Show recipient information
 			$pdf->SetFont('', '', $default_font_size - 1);
 			$pdf->SetXY($posx + 2, $posy);
 			$pdf->MultiCell($widthrecbox, 4, $carac_client, 0, $ltrdirection);
+
 		}
 
 		$pdf->SetTextColor(0, 0, 0);
