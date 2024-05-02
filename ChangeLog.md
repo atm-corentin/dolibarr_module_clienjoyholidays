@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## 1.7
+- NEW : Add a button to create and link travel packages to commercial proposals, with associated automated object deletion.  *25/04/2024* - 1.7.0
+
 ## 1.6
 - FIX : Print default price when you create a travel plan - *25/04/2024* - 1.6.0
 

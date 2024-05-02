@@ -102,3 +102,4 @@ CliEnjoyHolidaysListTitle = Travel Form
 #
 CEHLabelInf5 = The form is not empty
 SyntaxSqlError = Syntax error on sql query
+EmptyObjectLinked = Array of linked object is empty

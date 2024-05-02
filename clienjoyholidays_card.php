@@ -86,6 +86,10 @@ require_once DOL_DOCUMENT_ROOT . '/core/class/html.formprojet.class.php';
 dol_include_once('/clienjoyholidays/class/clienjoyholidays.class.php');
 dol_include_once('/clienjoyholidays/lib/clienjoyholidays_clienjoyholidays.lib.php');
 
+if (isModEnabled("propal")) {
+	require_once DOL_DOCUMENT_ROOT.'/comm/propal/class/propal.class.php';
+}
+
 // Load translation files required by the page
 $langs->loadLangs(array("clienjoyholidays@clienjoyholidays", "other"));
 
@@ -102,6 +106,11 @@ $backtopage = GETPOST('backtopage', 'alpha');                    // if not set, 
 $backtopageforcancel = GETPOST('backtopageforcancel', 'alpha');    // if not set, $backtopage will be used
 $backtopagejsfields = GETPOST('backtopagejsfields', 'alpha');
 $dol_openinpopup = GETPOST('dol_openinpopup', 'aZ09');
+$origin = GETPOST('origin','alphanohtml');
+$originid = GETPOSTINT('originid');
+
+
+
 
 if (!empty($backtopagejsfields)) {
 	$tmpbacktopagejsfields = explode(':', $backtopagejsfields);
@@ -301,6 +310,12 @@ if ($action == 'create') {
 	}
 	if ($dol_openinpopup) {
 		print '<input type="hidden" name="dol_openinpopup" value="' . $dol_openinpopup . '">';
+	}
+	if($origin){
+		print '<input type="hidden" name="origin" value="' . $origin . '">';
+	}
+	if($originid){
+		print '<input type="hidden" name="originid" value="' . $originid . '">';
 	}
 
 	print dol_get_fiche_head(array(), '');
@@ -623,7 +638,7 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 			$buttonId = 'action-delete-no-ajax';
 
 		}
-		print '</div>' . "\n";
+
 	}
 
 

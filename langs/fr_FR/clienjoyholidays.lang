@@ -102,3 +102,4 @@ CliEnjoyHolidaysListTitle = Formule de voyage
 #
 CEHLabelInf5 = Le formulaire n’est pas vidé
 SyntaxSqlError = Erreur de syntaxe sur le requete sql
+EmptyObjectLinked = Le tableau d'objets liés est vide
