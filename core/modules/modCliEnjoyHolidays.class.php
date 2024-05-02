@@ -72,7 +72,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 		$this->editor_url = '';
 
 		// Possible values for version are: 'development', 'experimental', 'dolibarr', 'dolibarr_deprecated', 'experimental_deprecated' or a version string like 'x.y.z'
-		$this->version = '1.0';
+		$this->version = '1.8';
 		// Url to the file with your last numberversion of this module
 		//$this->url_last_version = 'http://www.example.com/versionmodule.txt';
 
@@ -474,7 +474,8 @@ class modCliEnjoyHolidays extends DolibarrModules
 		include_once DOL_DOCUMENT_ROOT.'/core/class/extrafields.class.php';
 		$extrafields = new ExtraFields($this->db);
 
-		$param = array ( 'options' => array ( 'User:user/class/user.class.php' => NULL, ), );
+
+		$param = array ( 'options' => array ( 'User:user/class/user.class.php' => NULL) );
 		$result1 = $extrafields->addExtraField('clienjoyholidays_specificmention', $langs->trans('Specific_Mention'), 'varchar', 100,  60, 'propal',   0, 0, '', '', 1, '', 1, 0, '', '', 'clienjoyholidays@clienjoyholidays', 'isModEnabled("clienjoyholidays")');
 		$result2 = $extrafields->addExtraField('clienjoyholidays_user', $langs->trans("Responsible"), 'link', 100, '', 'propaldet', 0, 0, '', $param, 1);
 
