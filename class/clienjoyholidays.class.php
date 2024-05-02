@@ -522,9 +522,7 @@ class CliEnjoyHolidays extends CommonObject
 
 		global $langs;
 		$this->fetchObjectLinked();
-		if (empty($this->linkedObjectsIds['propal'])) {
-			return -1;
-		} else {
+		if (!empty($this->linkedObjectsIds['propal'])) {
 			foreach ($this->linkedObjectsIds['propal'] as $id) {
 				$objectpropal = new Propal($this->db);
 				$res = $objectpropal->fetch($id);

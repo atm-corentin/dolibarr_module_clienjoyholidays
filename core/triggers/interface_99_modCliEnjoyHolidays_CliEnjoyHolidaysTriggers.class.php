@@ -197,16 +197,16 @@ class InterfaceCliEnjoyHolidaysTriggers extends DolibarrTriggers
 			//case 'PROPAL_CLOSE_REFUSED':
 			case 'PROPAL_DELETE':
 				$object->fetchObjectLinked();
-				if (empty($object->linkedObjectsIds)) {
-					return -1;
-				} else {
-					foreach ($object->linkedObjectsIds['clienjoyholidays_clienjoyholidays'] as $id) {
-						$clienjoyobject = new CliEnjoyHolidays($this->db);
-						$resfetch = $clienjoyobject->fetch($id);
-						if ($resfetch > 0) {
-							$clienjoyobject->delete($user, 1);
-						} else {
-							return -1;
+				if (!empty($object->linkedObjectsIds)) {
+					{
+						foreach ($object->linkedObjectsIds['clienjoyholidays_clienjoyholidays'] as $id) {
+							$clienjoyobject = new CliEnjoyHolidays($this->db);
+							$resfetch = $clienjoyobject->fetch($id);
+							if ($resfetch > 0) {
+								$clienjoyobject->delete($user, 1);
+							} else {
+								return -1;
+							}
 						}
 					}
 				}
