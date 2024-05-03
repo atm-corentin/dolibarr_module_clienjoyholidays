@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## 1.9
+- NEW : Creation of a document template “azur_formuledevoyage” which includes the “specific mention” field at the end of the header *02/05/2024* - 1.9.0
+
 ## 1.8
 - NEW : Add extrafield on commercial proposals *30/04/2024* - 1.8.0
 
