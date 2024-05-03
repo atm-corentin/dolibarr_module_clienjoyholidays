@@ -1582,8 +1582,11 @@ class pdf_propale_azur_formuledevoyage extends ModelePDFPropales
 			$pdf->SetTextColor(0, 0, 60);
 			$pdf->MultiCell(100, 3, $outputlangs->transnoentities("CustomerCode")." : ".$outputlangs->transnoentities($object->thirdparty->code_client), '', 'R');
 		}
-		$extranote = $this->getExtrafieldsInHtml($object, $outputlangs);
-		$pdf->writeHTMLCell(0, 3, $posx +66 , $posy + 4, dol_htmlentitiesbr($extranote), 0, 0);
+		$param = array ('clienjoyholidays_specificmention');
+
+
+		$pdf->writeHTMLCell(0, 3, $posx +66 , $posy + 4, $outputlangs->transnoentities("Specific_Mention") . " : " . $outputlangs->convToOutputCharset($object->array_options['options_clienjoyholidays_specificmention']), 0, 0);
+
 
 
 		// Get contact
