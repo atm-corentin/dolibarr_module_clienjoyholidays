@@ -30,6 +30,12 @@ ReadobjectsofCliEnjoyHolidays = Consulter les formules de voyages
 # Module permission de supprimer 'DeleteobjectsofCliEnjoyHolidays'
 DeleteobjectsofCliEnjoyHolidays =Supprimer les formule de voyages
 
+#
+# Extrafileds
+#
+Specific_Mention = Mention spécifique
+Responsible= Responsable
+
 
 #
 # Titre du dictionnaire pour avoir un prix par defaut pour un pays 'DictionaryDefaultPriceCountry'

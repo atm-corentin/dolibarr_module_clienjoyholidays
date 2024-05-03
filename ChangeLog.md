@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## 1.8
+- NEW : Add extrafield on commercial proposals *30/04/2024* - 1.8.0
+
 ## 1.7
 - NEW : Add a button to create and link travel packages to commercial proposals, with associated automated object deletion.  *25/04/2024* - 1.7.0
 

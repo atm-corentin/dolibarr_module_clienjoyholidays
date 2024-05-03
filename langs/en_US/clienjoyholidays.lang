@@ -31,6 +31,14 @@ ReadobjectsofCliEnjoyHolidays = 'Consult the travel plans'
 DeleteobjectsofChiffrage = 'Delete travel plan'
 
 
+
+#
+# Extrafileds
+#
+Specific_Mention = Specific mention
+Responsible = Manager
+
+
 #
 # Dictionary title to have a default price for a country 'DictionaryDefaultPriceCountry'
 #
