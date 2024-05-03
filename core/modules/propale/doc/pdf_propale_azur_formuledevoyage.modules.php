@@ -415,10 +415,10 @@ class pdf_propale_azur_formuledevoyage extends ModelePDFPropales
 					}
 				}
 				// Extrafields in note
-//				$extranote = $this->getExtrafieldsInHtml($object, $outputlangs);
-//				if (!empty($extranote)) {
-//					$notetoshow = dol_concatdesc($notetoshow, $extranote);
-//				}
+				$extranote = $this->getExtrafieldsInHtml($object, $outputlangs);
+				if (!empty($extranote)) {
+					$notetoshow = dol_concatdesc($notetoshow, $extranote);
+				}
 				if (getDolGlobalString('MAIN_ADD_CREATOR_IN_NOTE') && $object->user_author_id > 0) {
 					$tmpuser = new User($this->db);
 					$tmpuser->fetch($object->user_author_id);
