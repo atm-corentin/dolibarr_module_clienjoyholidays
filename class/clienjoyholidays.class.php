@@ -121,8 +121,8 @@ class CliEnjoyHolidays extends CommonObject
 		"tms" => array("type" => "timestamp", "label" => "DateModification", "enabled" => "1", 'position' => 501, 'notnull' => 0, "visible" => "-2",),
 		"fk_user_creat" => array("type" => "integer:User:user/class/user.class.php", "label" => "UserAuthor", "picto" => "user", "enabled" => "1", 'position' => 510, 'notnull' => 1, "visible" => "-2", "csslist" => "tdoverflowmax150",),
 		"fk_user_modif" => array("type" => "integer:User:user/class/user.class.php", "label" => "UserModif", "picto" => "user", "enabled" => "1", 'position' => 511, 'notnull' => -1, "visible" => "-2", "csslist" => "tdoverflowmax150",),
-		"import_key" => array("type" => "varchar(14)", "label" => "ImportId", "enabled" => "1", 'position' => 1000, 'notnull' => 0, "visible" => "-2",),
-		"status" => array("type" => "integer", "label" => "Status", "enabled" => "1", 'position' => 2000, 'notnull' => 1, "visible" => "4", "index" => "1", "arrayofkeyval" => array("0" => "{{0:Brouillon:1:Validé}}"), "validate" => "1",),
+//		"import_key" => array("type" => "varchar(14)", "label" => "ImportId", "enabled" => "1", 'position' => 1000, 'notnull' => 0, "visible" => "-2",),
+		"status" => array("type" => "integer", "label" => "Status", "enabled" => "1", 'position' => 2000, 'notnull' => 1, "visible" => "5", "index" => "1", "arrayofkeyval" => array("0" => "{{0:Brouillon:1:Validé}}"), "validate" => "1",),
 		"fk_destination_country" => array("type" => "integer:ccountry:/core/class/ccountry.class.php", "label" => "Pays de destination", "enabled" => "1", 'position' => 50, 'notnull' => 1, "visible" => "1",),
 		"start_date" => array("type" => "datetime", "label" => "Date/Heure Départ", "enabled" => "1", 'position' => 60, 'notnull' => 0, "visible" => "1",),
 		"return_date" => array("type" => "datetime", "label" => "Date/Heure Retour", "enabled" => "1", 'position' => 70, 'notnull' => 0, "visible" => "1",),
@@ -136,7 +136,7 @@ class CliEnjoyHolidays extends CommonObject
 	public $tms;
 	public $fk_user_creat;
 	public $fk_user_modif;
-	public $import_key;
+//	public $import_key;
 	public $status;
 	public $fk_destination_country;
 	public $start_date;

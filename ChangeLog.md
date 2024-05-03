@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+
+## 1.10
+- NEW : Added a standard CSV export/import of all travel packages *03/05/2024* - 1.10.0
+
+
 ## 1.9
 - NEW : Creation of a document template “azur_formuledevoyage” which includes the “specific mention” field at the end of the header *02/05/2024* - 1.9.0
 
