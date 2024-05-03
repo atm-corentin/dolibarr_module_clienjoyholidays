@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 ## Unreleased
 
 
-## 2.0
+## 1.10
 - NEW : Creation of a document template “azur_formuledevoyage” which includes the “specific mention” field at the end of the header *02/05/2024* - 1.10.0
 
 
