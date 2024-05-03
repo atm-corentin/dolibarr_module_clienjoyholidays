@@ -18,7 +18,7 @@
 #
 
 # Module title
-CEHTiltle = Formule de voyage
+CEHTiltle = Travel package
 # Module label 'ModuleCliEnjoyHolidaysName'
 ModuleCliEnjoyHolidaysName = CliEnjoyHolidays
 # Module description 'ModuleCliEnjoyHolidaysDesc'
