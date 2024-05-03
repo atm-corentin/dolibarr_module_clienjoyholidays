@@ -415,10 +415,10 @@ class pdf_propale_azur_formuledevoyage extends ModelePDFPropales
 					}
 				}
 				// Extrafields in note
-//				$extranote = $this->getExtrafieldsInHtml($object, $outputlangs);
-//				if (!empty($extranote)) {
-//					$notetoshow = dol_concatdesc($notetoshow, $extranote);
-//				}
+				$extranote = $this->getExtrafieldsInHtml($object, $outputlangs);
+				if (!empty($extranote)) {
+					$notetoshow = dol_concatdesc($notetoshow, $extranote);
+				}
 				if (getDolGlobalString('MAIN_ADD_CREATOR_IN_NOTE') && $object->user_author_id > 0) {
 					$tmpuser = new User($this->db);
 					$tmpuser->fetch($object->user_author_id);
@@ -1582,8 +1582,11 @@ class pdf_propale_azur_formuledevoyage extends ModelePDFPropales
 			$pdf->SetTextColor(0, 0, 60);
 			$pdf->MultiCell(100, 3, $outputlangs->transnoentities("CustomerCode")." : ".$outputlangs->transnoentities($object->thirdparty->code_client), '', 'R');
 		}
-		$extranote = $this->getExtrafieldsInHtml($object, $outputlangs);
-		$pdf->writeHTMLCell(0, 3, $posx +66 , $posy + 4, dol_htmlentitiesbr($extranote), 0, 0);
+		$param = array ('clienjoyholidays_specificmention');
+
+
+		$pdf->writeHTMLCell(0, 3, $posx +67 , $posy + 4, $outputlangs->transnoentities("Specific_Mention") . " : " . $outputlangs->convToOutputCharset($object->array_options['options_clienjoyholidays_specificmention']), 0, 0);
+
 
 
 		// Get contact
