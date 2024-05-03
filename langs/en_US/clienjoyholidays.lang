@@ -17,6 +17,8 @@
 # Generic
 #
 
+# Module title
+CEHTiltle = Formule de voyage
 # Module label 'ModuleCliEnjoyHolidaysName'
 ModuleCliEnjoyHolidaysName = CliEnjoyHolidays
 # Module description 'ModuleCliEnjoyHolidaysDesc'
