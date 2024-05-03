@@ -1585,7 +1585,7 @@ class pdf_propale_azur_formuledevoyage extends ModelePDFPropales
 		$param = array ('clienjoyholidays_specificmention');
 
 
-		$pdf->writeHTMLCell(0, 3, $posx +66 , $posy + 4, $outputlangs->transnoentities("Specific_Mention") . " : " . $outputlangs->convToOutputCharset($object->array_options['options_clienjoyholidays_specificmention']), 0, 0);
+		$pdf->writeHTMLCell(0, 3, $posx +67 , $posy + 4, $outputlangs->transnoentities("Specific_Mention") . " : " . $outputlangs->convToOutputCharset($object->array_options['options_clienjoyholidays_specificmention']), 0, 0);
 
 
 
