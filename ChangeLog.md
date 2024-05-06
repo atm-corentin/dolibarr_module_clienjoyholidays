@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## 1.11
+- NEW : Create an API which allows you to list travel packages *06/05/2024* - 1.11.0
 
 ## 1.10
 - NEW : Added a standard CSV export/import of all travel packages *03/05/2024* - 1.10.0
