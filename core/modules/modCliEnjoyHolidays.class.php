@@ -125,7 +125,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 			//Add contact element
 			'contactelement' => array(
 
-				'clienjoyholidays_clienjoyholidays' => $langs->trans('CEHTiltle')
+				'clienjoyholidays_clienjoyholidays' => img_picto('', $this->picto, 'class="pictofixedwidth valignmiddle"').$langs->trans('CEHTiltle')
 			)
 		);
 
