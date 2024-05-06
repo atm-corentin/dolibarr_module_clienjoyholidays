@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## 1.12
+- NEW : Add a “Contact” tab, a travel plan and a “Traveler” contact type *06/05/2024* - 1.12.0
+
 ## 1.11
 - NEW : Create an API which allows you to list travel packages *06/05/2024* - 1.11.0
 
