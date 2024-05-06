@@ -262,7 +262,7 @@ $form = new Form($db);
 $formfile = new FormFile($db);
 $formproject = new FormProjets($db);
 
-$title = $langs->trans("CliEnjoyHolidays") . " - " . $langs->trans('Card');
+$title = $langs->trans("CEHTiltle") . " - " . $langs->trans('Card');
 //$title = $object->ref." - ".$langs->trans('Card');
 if ($action == 'create') {
 	$title = $langs->trans("CliEnjoyHolidaysCardTitle");
@@ -370,8 +370,7 @@ if ($action == 'create') {
 
 // Part to edit record
 if (($id || $ref) && $action == 'edit') {
-	print load_fiche_titre($langs->trans("CliEnjoyHolidays"), '', 'object_' . $object->picto);
-
+	print load_fiche_titre($langs->trans("CEHTiltle"), '', 'object_' . $object->picto);
 	print '<form method="POST" action="' . $_SERVER["PHP_SELF"] . '">';
 	print '<input type="hidden" name="token" value="' . newToken() . '">';
 	print '<input type="hidden" name="action" value="update">';
@@ -406,8 +405,7 @@ if (($id || $ref) && $action == 'edit') {
 if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'create'))) {
 	$head = clienjoyholidaysPrepareHead($object);
 
-	print dol_get_fiche_head($head, 'card', $langs->trans("CliEnjoyHolidays"), -1, $object->picto, 0, '', '', 0, '', 1);
-
+	print dol_get_fiche_head($head, 'card', $langs->trans("CEHTiltle"), -1, $object->picto, 0, '', '', 0, '', 1);
 	$formconfirm = '';
 
 	// Confirmation to delete (using preloaded confirm popup)
