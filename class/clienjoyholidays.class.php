@@ -242,10 +242,6 @@ class CliEnjoyHolidays extends CommonObject
 				$originid = GETPOSTINT('originid');
 				$this->add_object_linked($origin, $originid);
 			}
-			echo "<pre>";
-			var_dump($this->status);
-			echo "</pre>";
-			exit;
 			return $resultcreate;
 		} else {
 			setEventMessages($langs->trans("CEHLabelInf5"), $this->errors, 'errors');
