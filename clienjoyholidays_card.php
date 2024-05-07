@@ -250,7 +250,12 @@ if (empty($reshook)) {
 	$triggersendname = 'CLIENJOYHOLIDAYS_MYOBJECT_SENTBYMAIL';
 	$autocopy = 'MAIN_MAIL_AUTOCOPY_MYOBJECT_TO';
 	$trackid = 'clienjoyholidays' . $object->id;
+
+	$tmpObject = $object;
+	unset($object);
+
 	include DOL_DOCUMENT_ROOT . '/core/actions_sendmails.inc.php';
+	$object = $tmpObject;
 }
 
 
