@@ -474,6 +474,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 
 		//$result = $this->_load_tables('/install/mysql/', 'clienjoyholidays');
 		$result = $this->_load_tables('/clienjoyholidays/sql/');
+
 		if ($result < 0) {
 			return -1; // Do not activate module if error 'not allowed' returned when loading module SQL queries (the _load_table run sql with run_sql with the error allowed parameter set to 'default')
 		}
