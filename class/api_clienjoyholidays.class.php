@@ -18,8 +18,7 @@
 
 use Luracast\Restler\RestException;
 
-dol_include_once('/clienjoyholidays/class/clienjoyholidays.class.php');
-
+include __DIR__.'/clienjoyholidays.class.php';
 
 
 /**
@@ -129,19 +128,7 @@ class CliEnjoyHolidaysApi extends DolibarrApi
 		if ($tmpobject->ismultientitymanaged) {
 			$sql .= ' AND t.entity IN ('.getEntity($tmpobject->element).')';
 		}
-		if ($restrictonsocid && (!DolibarrApiAccess::$user->rights->societe->client->voir && !$socid) || $search_sale > 0) {
-			$sql .= " AND t.fk_soc = sc.fk_soc";
-		}
-		if ($restrictonsocid && $socid) {
-			$sql .= " AND t.fk_soc = ".((int) $socid);
-		}
-		if ($restrictonsocid && $search_sale > 0) {
-			$sql .= " AND t.rowid = sc.fk_soc"; // Join for the needed table to filter by sale
-		}
 		// Insert sale filter
-		if ($restrictonsocid && $search_sale > 0) {
-			$sql .= " AND sc.fk_user = ".((int) $search_sale);
-		}
 		if ($sqlfilters) {
 			$errormessage = '';
 			$sql .= forgeSQLFromUniversalSearchCriteria($sqlfilters, $errormessage);
