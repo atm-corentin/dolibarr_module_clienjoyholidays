@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## 1.13
+- NEW : Send default email to Traveler  *07/05/2024* - 1.13.0
+
 ## 1.12
 - NEW : Add a “Contact” tab, a travel plan and a “Traveler” contact type *06/05/2024* - 1.12.0
 
