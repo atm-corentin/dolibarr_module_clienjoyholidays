@@ -42,7 +42,7 @@ function clienjoyholidaysPrepareHead($object)
 	$head = array();
 
 	$head[$h][0] = dol_buildpath("/clienjoyholidays/clienjoyholidays_card.php", 1).'?id='.$object->id;
-	$head[$h][1] = $langs->trans("CliEnjoyHolidays");
+	$head[$h][1] = $langs->trans("CEHTiltle");
 	$head[$h][2] = 'card';
 	$h++;
 
