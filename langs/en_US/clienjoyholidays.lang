@@ -118,3 +118,9 @@ EmptyObjectLinked = Array of linked object is empty
 # Lib page
 #
 CEHTiltle = Travel package
+
+#
+# Cron page
+#
+ClosingTravelPackage = Close travel package
+CEHValidateTravelPakage = Closes all non-validated travel packages that are more than 3 weeks old

@@ -1214,7 +1214,7 @@ class CliEnjoyHolidays extends CommonObject
 	 */
 	public function doScheduledJob()
 	{
-		//global $conf, $langs;
+		global $conf, $langs, $db;
 
 		//$conf->global->SYSLOG_FILE = 'DOL_DATA_ROOT/dolibarr_mydedicatedlogfile.log';
 
@@ -1228,7 +1228,24 @@ class CliEnjoyHolidays extends CommonObject
 
 		$this->db->begin();
 
-		// ...
+		$sql = 'SELECT ref ';
+		$sql .='FROM '.MAIN_DB_PREFIX.'clienjoyholidays_clienjoyholidays ';
+		$sql .="WHERE status = ".self::STATUS_DRAFT." AND DATE_ADD(date_creation, INTERVAL 3 WEEK ) < '".$now . "'";
+
+		$resql = $db->query($sql);
+		if($resql){
+			if ($db->num_rows($resql) > 0) {
+				$objId = $db->fetch_object($resql);
+				$sql = 'UPDATE '.MAIN_DB_PREFIX.'clienjoyholidays_clienjoyholidays set status = 1 ';
+				$sql .= "WHERE ref = '".$objId->ref."'";
+				$resql = $this->db->query($sql);
+				if (!$resql) {
+					$error++;
+					$this->error = $this->db->lasterror();
+				}
+			}
+		}
+
 
 		$this->db->commit();
 
