@@ -119,12 +119,10 @@ class modCliEnjoyHolidays extends DolibarrModules
 				),
 				'entity' => '0',
 			),
-
 			// Set this to 1 if features of module are opened to external users
 			'moduleforexternal' => 0,
 			//Add contact element
 			'contactelement' => array(
-
 				'clienjoyholidays_clienjoyholidays' => img_picto('', $this->picto, 'class="pictofixedwidth valignmiddle"').$langs->trans('CEHTiltle')
 			)
 		);
@@ -474,7 +472,6 @@ class modCliEnjoyHolidays extends DolibarrModules
 
 		//$result = $this->_load_tables('/install/mysql/', 'clienjoyholidays');
 		$result = $this->_load_tables('/clienjoyholidays/sql/');
-
 		if ($result < 0) {
 			return -1; // Do not activate module if error 'not allowed' returned when loading module SQL queries (the _load_table run sql with run_sql with the error allowed parameter set to 'default')
 		}
