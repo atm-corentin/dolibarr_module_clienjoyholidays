@@ -1214,44 +1214,54 @@ class CliEnjoyHolidays extends CommonObject
 	 */
 	public function doScheduledJob()
 	{
-		global $conf, $langs, $db;
-
-		//$conf->global->SYSLOG_FILE = 'DOL_DATA_ROOT/dolibarr_mydedicatedlogfile.log';
-
+		global $langs, $db;
 		$error = 0;
+		$i = 0;
 		$this->output = '';
-		$this->error = '';
-
-		dol_syslog(__METHOD__ . " start", LOG_INFO);
-
-		$now = dol_now();
 
 		$this->db->begin();
 
-		$sql = 'SELECT ref ';
+		$sql = 'SELECT rowid ';
 		$sql .='FROM '.MAIN_DB_PREFIX.'clienjoyholidays_clienjoyholidays ';
-		$sql .="WHERE status = ".self::STATUS_DRAFT." AND DATE_ADD(date_creation, INTERVAL 3 WEEK ) < '".$now . "'";
+		$sql .="WHERE status = ".self::STATUS_DRAFT." AND DATE_ADD(date_creation, INTERVAL 3 WEEK ) < NOW()";
 
 		$resql = $db->query($sql);
 		if($resql){
-			if ($db->num_rows($resql) > 0) {
-				$objId = $db->fetch_object($resql);
-				$sql = 'UPDATE '.MAIN_DB_PREFIX.'clienjoyholidays_clienjoyholidays set status = 1 ';
-				$sql .= "WHERE ref = '".$objId->ref."'";
-				$resql = $this->db->query($sql);
-				if (!$resql) {
-					$error++;
-					$this->error = $this->db->lasterror();
+			$num = $this->db->num_rows($resql);
+			if ($num) {
+				$this->output .= $langs->trans("FoundXTravelPackage", $num)."\n";
+				while ($obj = $this->db->fetch_object($resql)) {
+					$list[] = $obj->rowid;
 				}
+			}else {
+				$this->output .= $langs->trans("NoTravelPackageFound");
 			}
+
+		}else{
+			dol_print_error($this->db);
 		}
-
-
 		$this->db->commit();
+		if (empty($list)){
+			return -1;
+		}else{
+			$this->db->begin();
 
-		dol_syslog(__METHOD__ . " end", LOG_INFO);
+			foreach ($list as $rowid){
+				$this->updateStatus($rowid);
+			}
+			$this->db->commit();
+		}
+		return $error ? $error : 0;
+	}
 
-		return $error;
+	private function updateStatus($rowid)
+	{
+		$sql = 'UPDATE ' . MAIN_DB_PREFIX . 'clienjoyholidays_clienjoyholidays set status = 1 ';
+		$sql .= "WHERE rowid = '" . $rowid . "'";
+		$resql = $this->db->query($sql);
+		if (!$resql) {
+			return false;
+		}else return true;
 	}
 
 

@@ -124,3 +124,5 @@ CEHTiltle = Travel package
 #
 ClosingTravelPackage = Close travel package
 CEHValidateTravelPakage = Closes all non-validated travel packages that are more than 3 weeks old
+FoundXTravelPackage = Found %s travel package
+NoTravelPackageFound = No travel packages for validation

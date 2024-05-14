@@ -243,15 +243,16 @@ class modCliEnjoyHolidays extends DolibarrModules
 			      'objectname' => 'CliEnjoyHolidays',
 			      'method' => 'doScheduledJob',
 			      'parameters' => '',
-			      'comment' => 'Closes all non-validated travel packages that are more than 3 weeks old',
+			      'comment' => $langs->trans('CEHValidateTravelPakage'),
 			      'frequency' => 1,
 			      'unitfrequency' => 86400,
 			      'status' => 1,
 			      'test' => 'isModEnabled("clienjoyholidays")',
 			      'priority' => 52,
-				  'datestart' => (new DateTime('tomorrow 1 hours'))->format('Y-m-d H:i:s')
+				  'datestart' => (new DateTime('tomorrow 1 hours'))->format('Y-m-d H:i:s'),
 			  ),
 		);
+
 		/* END MODULEBUILDER CRON */
 		// Example: $this->cronjobs=array(
 		//    0=>array('label'=>'My label', 'jobtype'=>'method', 'class'=>'/dir/class/file.class.php', 'objectname'=>'MyClass', 'method'=>'myMethod', 'parameters'=>'param1, param2', 'comment'=>'Comment', 'frequency'=>2, 'unitfrequency'=>3600, 'status'=>0, 'test'=>'isModEnabled("clienjoyholidays")', 'priority'=>50),
