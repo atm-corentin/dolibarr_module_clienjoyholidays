@@ -128,7 +128,7 @@ if ($id > 0 || !empty($ref)) {
 // Permissions
 // (There are several ways to check permission.)
 // Set $enablepermissioncheck to 1 to enable a minimum low level of checks
-$enablepermissioncheck = 0;
+$enablepermissioncheck = 1;
 if ($enablepermissioncheck) {
 	$permissiontoread = $user->hasRight('clienjoyholidays', 'clienjoyholidays', 'read');
 	$permissiontoadd  = $user->hasRight('clienjoyholidays', 'clienjoyholidays', 'write'); // Used by the include of actions_addupdatedelete.inc.php and actions_linkedfiles.inc.php
