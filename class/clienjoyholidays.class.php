@@ -1214,9 +1214,7 @@ class CliEnjoyHolidays extends CommonObject
 	 */
 	public function doScheduledJob()
 	{
-		global $langs, $db;
-		$error = 0;
-		$i = 0;
+		global $langs, $user;
 		$this->output = '';
 
 		$this->db->begin();
@@ -1225,43 +1223,37 @@ class CliEnjoyHolidays extends CommonObject
 		$sql .='FROM '.MAIN_DB_PREFIX.'clienjoyholidays_clienjoyholidays ';
 		$sql .="WHERE status = ".self::STATUS_DRAFT." AND DATE_ADD(date_creation, INTERVAL 3 WEEK ) < NOW()";
 
-		$resql = $db->query($sql);
+		$resql = $this->db->query($sql);
 		if($resql){
 			$num = $this->db->num_rows($resql);
 			if ($num) {
-				$this->output .= $langs->trans("FoundXTravelPackage", $num)."\n";
 				while ($obj = $this->db->fetch_object($resql)) {
 					$list[] = $obj->rowid;
 				}
 			}else {
 				$this->output .= $langs->trans("NoTravelPackageFound");
+				return 0;
 			}
-
 		}else{
 			dol_print_error($this->db);
 		}
 		$this->db->commit();
-		if (empty($list)){
-			return -1;
-		}else{
-			$this->db->begin();
+		foreach ($list as $i => $rowid){
 
-			foreach ($list as $rowid){
-				$this->updateStatus($rowid);
+			$objstatic = new CliEnjoyHolidays($this->db);
+			$objstatic->fetch($rowid);
+			if ($objstatic->fetch($rowid) < 0 ){
+				return -1;
 			}
-			$this->db->commit();
-		}
-		return $error ? $error : 0;
-	}
+			if ($objstatic->validate($user) < 0){
+				return -1;
+			}
+			$this->output .= $objstatic->getNomUrl(1);
+			if ($i+1 < count($list)) $this->output .= ', ';
 
-	private function updateStatus($rowid)
-	{
-		$sql = 'UPDATE ' . MAIN_DB_PREFIX . 'clienjoyholidays_clienjoyholidays set status = 1 ';
-		$sql .= "WHERE rowid = '" . $rowid . "'";
-		$resql = $this->db->query($sql);
-		if (!$resql) {
-			return false;
-		}else return true;
+		}
+
+		return 0;
 	}
 
 
