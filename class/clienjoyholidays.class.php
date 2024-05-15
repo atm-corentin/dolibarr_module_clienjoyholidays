@@ -1232,25 +1232,27 @@ class CliEnjoyHolidays extends CommonObject
 				}
 			}else {
 				$this->output .= $langs->trans("NoTravelPackageFound");
-				return 0;
 			}
 		}else{
 			dol_print_error($this->db);
 		}
 		$this->db->commit();
-		foreach ($list as $i => $rowid){
+		if (empty($list)){
+			$this->output .= $langs->trans("NoTravelPackageFound");
+		}else {
+			foreach ($list as $i => $rowid) {
 
-			$objstatic = new CliEnjoyHolidays($this->db);
-			$objstatic->fetch($rowid);
-			if ($objstatic->fetch($rowid) < 0 ){
-				return -1;
+				$objstatic = new CliEnjoyHolidays($this->db);
+				$objstatic->fetch($rowid);
+				if ($objstatic->fetch($rowid) < 0) {
+					return -1;
+				}
+				if ($objstatic->validate($user) < 0) {
+					return -1;
+				}
+				$this->output .= $objstatic->getNomUrl(1);
+				if ($i + 1 < count($list)) $this->output .= ', ';
 			}
-			if ($objstatic->validate($user) < 0){
-				return -1;
-			}
-			$this->output .= $objstatic->getNomUrl(1);
-			if ($i+1 < count($list)) $this->output .= ', ';
-
 		}
 
 		return 0;
