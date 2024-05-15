@@ -1004,10 +1004,10 @@ class CliEnjoyHolidays extends CommonObject
 			global $langs;
 			//$langs->load("clienjoyholidays@clienjoyholidays");
 			$this->labelStatus[self::STATUS_DRAFT] = $langs->transnoentitiesnoconv('Draft');
-			$this->labelStatus[self::STATUS_VALIDATED] = $langs->transnoentitiesnoconv('Validate');
+			$this->labelStatus[self::STATUS_VALIDATED] = $langs->transnoentitiesnoconv('CEHValidate');
 			$this->labelStatus[self::STATUS_CANCELED] = $langs->transnoentitiesnoconv('Disabled');
 			$this->labelStatusShort[self::STATUS_DRAFT] = $langs->transnoentitiesnoconv('Draft');
-			$this->labelStatusShort[self::STATUS_VALIDATED] = $langs->transnoentitiesnoconv('Validate');
+			$this->labelStatusShort[self::STATUS_VALIDATED] = $langs->transnoentitiesnoconv('CEHValidate');
 			$this->labelStatusShort[self::STATUS_CANCELED] = $langs->transnoentitiesnoconv('Disabled');
 		}
 
@@ -1230,8 +1230,6 @@ class CliEnjoyHolidays extends CommonObject
 				while ($obj = $this->db->fetch_object($resql)) {
 					$list[] = $obj->rowid;
 				}
-			}else {
-				$this->output .= $langs->trans("NoTravelPackageFound");
 			}
 		}else{
 			dol_print_error($this->db);
@@ -1257,7 +1255,6 @@ class CliEnjoyHolidays extends CommonObject
 
 		return 0;
 	}
-
 
 	/**
 	 * Function which check if a given country as already a price set and return a price for a country.
