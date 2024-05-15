@@ -250,7 +250,12 @@ if (empty($reshook)) {
 	$triggersendname = 'CLIENJOYHOLIDAYS_MYOBJECT_SENTBYMAIL';
 	$autocopy = 'MAIN_MAIL_AUTOCOPY_MYOBJECT_TO';
 	$trackid = 'clienjoyholidays' . $object->id;
+
+	$tmpObject = $object;
+	unset($object);
+
 	include DOL_DOCUMENT_ROOT . '/core/actions_sendmails.inc.php';
+	$object = $tmpObject;
 }
 
 
@@ -595,7 +600,8 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 		if (empty($reshook)) {
 			// Send
 			if (empty($user->socid)) {
-				print dolGetButtonAction('', $langs->trans('SendMail'), 'default', $_SERVER["PHP_SELF"] . '?id=' . $object->id . '&action=presend&token=' . newToken() . '&mode=init#formmailbeforetitle');
+				$data = array(6);
+				print dolGetButtonAction('', $langs->trans('SendMail'), 'default', $_SERVER["PHP_SELF"] . '?id=' . $object->id . '&action=presend&token=' . newToken() . '&mode=init#formmailbeforetitle' . '&receiver[6]=6');
 			}
 
 			if ($permissiontoadd) {
@@ -691,6 +697,16 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 	$defaulttopic = 'InformationMessage';
 	$diroutput = $conf->clienjoyholidays->dir_output;
 	$trackid = 'clienjoyholidays' . $object->id;
+	$_POST['receiver'] = [];
+	$data = $object->liste_contact(-1, 'external', 0, 'TRAVELER', 1);
+
+	if (!empty($data)){
+		foreach ($data as $idArray) {
+			foreach ($idArray as $idcontact) {
+				$_POST['receiver'][] = $idcontact;
+			}
+		}
+	}
 
 	include DOL_DOCUMENT_ROOT . '/core/tpl/card_presend.tpl.php';
 }
