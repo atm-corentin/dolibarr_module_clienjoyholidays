@@ -699,11 +699,15 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 	$trackid = 'clienjoyholidays' . $object->id;
 	$_POST['receiver'] = [];
 	$data = $object->liste_contact(-1, 'external', 0, 'TRAVELER', 1);
-	foreach ($data as $idArray){
-		foreach ($idArray as $idcontact ){
-			$_POST['receiver'][] = $idcontact;
-		}
+	if (empty($data)){
+		return -1;
+	}else {
+		foreach ($data as $idArray) {
+			foreach ($idArray as $idcontact) {
+				$_POST['receiver'][] = $idcontact;
+			}
 
+		}
 	}
 
 	include DOL_DOCUMENT_ROOT . '/core/tpl/card_presend.tpl.php';
