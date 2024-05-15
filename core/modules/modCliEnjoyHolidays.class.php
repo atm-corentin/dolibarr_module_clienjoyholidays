@@ -72,7 +72,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 		$this->editor_url = '';
 
 		// Possible values for version are: 'development', 'experimental', 'dolibarr', 'dolibarr_deprecated', 'experimental_deprecated' or a version string like 'x.y.z'
-		$this->version = '1.13';
+		$this->version = '1.14';
 		// Url to the file with your last numberversion of this module
 		//$this->url_last_version = 'http://www.example.com/versionmodule.txt';
 
@@ -236,21 +236,23 @@ class modCliEnjoyHolidays extends DolibarrModules
 		// unit_frequency must be 60 for minute, 3600 for hour, 86400 for day, 604800 for week
 		/* BEGIN MODULEBUILDER CRON */
 		$this->cronjobs = array(
-			//  0 => array(
-			//      'label' => 'MyJob label',
-			//      'jobtype' => 'method',
-			//      'class' => '/clienjoyholidays/class/clienjoyholidays.class.php',
-			//      'objectname' => 'CliEnjoyHolidays',
-			//      'method' => 'doScheduledJob',
-			//      'parameters' => '',
-			//      'comment' => 'Comment',
-			//      'frequency' => 2,
-			//      'unitfrequency' => 3600,
-			//      'status' => 0,
-			//      'test' => 'isModEnabled("clienjoyholidays")',
-			//      'priority' => 50,
-			//  ),
+			  0 => array(
+			      'label' => $langs->trans('ClosingTravelPackage'),
+			      'jobtype' => 'method',
+			      'class' => '/clienjoyholidays/cron/cron.php',
+			      'objectname' => 'CliEnjoyHolidaysCron',
+			      'method' => 'doScheduledJob',
+			      'parameters' => '',
+			      'comment' => $langs->trans('ValidateTravelPakage'),
+			      'frequency' => 1,
+			      'unitfrequency' => 86400,
+			      'status' => 1,
+			      'test' => isModEnabled("clienjoyholidays"),
+			      'priority' => 52,
+				  'datestart' => (new DateTime('tomorrow 1 hours'))->format('Y-m-d H:i:s'),
+			  ),
 		);
+
 		/* END MODULEBUILDER CRON */
 		// Example: $this->cronjobs=array(
 		//    0=>array('label'=>'My label', 'jobtype'=>'method', 'class'=>'/dir/class/file.class.php', 'objectname'=>'MyClass', 'method'=>'myMethod', 'parameters'=>'param1, param2', 'comment'=>'Comment', 'frequency'=>2, 'unitfrequency'=>3600, 'status'=>0, 'test'=>'isModEnabled("clienjoyholidays")', 'priority'=>50),

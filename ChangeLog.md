@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## 1.14
+- NEW : Add a cron which validate travel packages that are more than 3 weeks old  *15/05/2024* - 1.14.0
+
 ## 1.13
 - NEW : Send default email to Traveler  *07/05/2024* - 1.13.0
 
