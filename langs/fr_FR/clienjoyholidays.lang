@@ -122,5 +122,4 @@ CEHTiltle = Formule de voyage
 #
 ClosingTravelPackage = Clotûre des formules de voyages
 CEHValidateTravelPakage = Clotûre toutes les formules de voyages non validées qui datent de plus de 3 semaines
-FoundXTravelPackage = %s formule de voyage
 NoTravelPackageFound =  Pas de formules de voyage pour la validation
