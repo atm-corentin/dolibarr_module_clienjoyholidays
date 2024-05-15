@@ -1216,7 +1216,6 @@ class CliEnjoyHolidays extends CommonObject
 	{
 		global $langs, $user;
 		$this->output = '';
-
 		$this->db->begin();
 
 		$sql = 'SELECT rowid ';
@@ -1239,7 +1238,6 @@ class CliEnjoyHolidays extends CommonObject
 			$this->output .= $langs->trans("NoTravelPackageFound");
 		}else {
 			foreach ($list as $i => $rowid) {
-
 				$objstatic = new CliEnjoyHolidays($this->db);
 				$objstatic->fetch($rowid);
 				if ($objstatic->fetch($rowid) < 0) {
@@ -1252,7 +1250,6 @@ class CliEnjoyHolidays extends CommonObject
 				if ($i + 1 < count($list)) $this->output .= ', ';
 			}
 		}
-
 		return 0;
 	}
 
