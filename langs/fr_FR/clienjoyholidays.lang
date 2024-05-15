@@ -111,7 +111,7 @@ CliEnjoyHolidaysListTitle = Formule de voyage
 CEHLabelInf5 = Le formulaire n’est pas vidé
 SyntaxSqlError = Erreur de syntaxe sur le requete sql
 EmptyObjectLinked = Le tableau d'objets liés est vide
-CEHValidate = Validé
+
 
 #
 # Lib page
@@ -122,5 +122,5 @@ CEHTiltle = Formule de voyage
 # Cron page
 #
 ClosingTravelPackage = Clotûre des formules de voyages
-CEHValidateTravelPakage = Clotûre toutes les formules de voyages non validées qui datent de plus de 3 semaines
+ValidateTravelPakage = Clotûre toutes les formules de voyages non validées qui datent de plus de 3 semaines
 NoTravelPackageFound =  Aucune formule de voyage à valider

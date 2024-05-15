@@ -113,7 +113,7 @@ CliEnjoyHolidaysListTitle = Travel Form
 CEHLabelInf5 = The form is not empty
 SyntaxSqlError = Syntax error on sql query
 EmptyObjectLinked = Array of linked object is empty
-CEHValidate = Validated
+
 
 #
 # Lib page
@@ -124,5 +124,5 @@ CEHTiltle = Travel package
 # Cron page
 #
 ClosingTravelPackage = Close travel package
-CEHValidateTravelPakage = Closes all non-validated travel packages that are more than 3 weeks old
+ValidateTravelPakage = Closes all non-validated travel packages that are more than 3 weeks old
 NoTravelPackageFound = No travel packages for validation

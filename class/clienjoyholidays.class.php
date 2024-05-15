@@ -1004,13 +1004,12 @@ class CliEnjoyHolidays extends CommonObject
 			global $langs;
 			//$langs->load("clienjoyholidays@clienjoyholidays");
 			$this->labelStatus[self::STATUS_DRAFT] = $langs->transnoentitiesnoconv('Draft');
-			$this->labelStatus[self::STATUS_VALIDATED] = $langs->transnoentitiesnoconv('CEHValidate');
+			$this->labelStatus[self::STATUS_VALIDATED] = $langs->transnoentitiesnoconv('Validated');
 			$this->labelStatus[self::STATUS_CANCELED] = $langs->transnoentitiesnoconv('Disabled');
 			$this->labelStatusShort[self::STATUS_DRAFT] = $langs->transnoentitiesnoconv('Draft');
-			$this->labelStatusShort[self::STATUS_VALIDATED] = $langs->transnoentitiesnoconv('CEHValidate');
+			$this->labelStatusShort[self::STATUS_VALIDATED] = $langs->transnoentitiesnoconv('Validated');
 			$this->labelStatusShort[self::STATUS_CANCELED] = $langs->transnoentitiesnoconv('Disabled');
 		}
-
 		$statusType = 'status' . $status;
 		//if ($status == self::STATUS_VALIDATED) $statusType = 'status1';
 		if ($status == self::STATUS_CANCELED) {
@@ -1205,53 +1204,7 @@ class CliEnjoyHolidays extends CommonObject
 		return $result;
 	}
 
-	/**
-	 * Action executed by scheduler
-	 * CAN BE A CRON TASK. In such a case, parameters come from the schedule job setup field 'Parameters'
-	 * Use public function doScheduledJob($param1, $param2, ...) to get parameters
-	 *
-	 * @return    int            0 if OK, <>0 if KO (this function is used also by cron so only 0 is OK)
-	 */
-	public function doScheduledJob()
-	{
-		global $langs, $user;
-		$this->output = '';
-		$this->db->begin();
 
-		$sql = 'SELECT rowid ';
-		$sql .='FROM '.MAIN_DB_PREFIX.'clienjoyholidays_clienjoyholidays ';
-		$sql .="WHERE status = ".self::STATUS_DRAFT." AND DATE_ADD(date_creation, INTERVAL 3 WEEK ) < NOW()";
-
-		$resql = $this->db->query($sql);
-		if($resql){
-			$num = $this->db->num_rows($resql);
-			if ($num) {
-				while ($obj = $this->db->fetch_object($resql)) {
-					$list[] = $obj->rowid;
-				}
-			}
-		}else{
-			dol_print_error($this->db);
-		}
-		$this->db->commit();
-		if (empty($list)){
-			$this->output .= $langs->trans("NoTravelPackageFound");
-		}else {
-			foreach ($list as $i => $rowid) {
-				$objstatic = new CliEnjoyHolidays($this->db);
-				$objstatic->fetch($rowid);
-				if ($objstatic->fetch($rowid) < 0) {
-					return -1;
-				}
-				if ($objstatic->validate($user) < 0) {
-					return -1;
-				}
-				$this->output .= $objstatic->getNomUrl(1);
-				if ($i + 1 < count($list)) $this->output .= ', ';
-			}
-		}
-		return 0;
-	}
 
 	/**
 	 * Function which check if a given country as already a price set and return a price for a country.
